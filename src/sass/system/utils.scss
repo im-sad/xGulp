@@ -1,0 +1,17 @@
+.no-wrap {
+  white-space: nowrap;
+}
+
+.visually-hidden {
+  visibility: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+}
+
+.icn {
+  display: inline-block;
+  fill: currentColor;
+}

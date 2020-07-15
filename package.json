@@ -1,0 +1,59 @@
+{
+  "name": "x_gulp",
+  "version": "1.0.0",
+  "private": true,
+  "browserslist": [
+    "last 2 versions",
+    "IE 11",
+    "Firefox ESR",
+    "not dead"
+  ],
+  "scripts": {
+    "start": "gulp default",
+    "build": "gulp build",
+    "stylelint": "stylelint \"src/sass/**/*.scss\" --syntax scss",
+    "eslint": "eslint src/js/",
+    "test": "npm run stylelint && npm run eslint"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.10.4",
+    "@babel/register": "^7.10.4",
+    "autoprefixer": "9.5.x",
+    "babel-loader": "^8.1.0",
+    "browser-sync": "2.26.x",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-mqpacker": "^7.0.0",
+    "del": "^5.1.0",
+    "eslint": "^7.4.0",
+    "eslint-config-htmlacademy": "^0.4.2",
+    "gulp": "4.0.x",
+    "gulp-changed": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-csscomb": "^3.1.0",
+    "gulp-env": "^0.4.0",
+    "gulp-file-include": "^2.2.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "4.0.x",
+    "gulp-sass-glob": "^1.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-svgstore": "^7.0.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-webp": "^4.0.1",
+    "node-notifier": "^7.0.1",
+    "normalize.css": "^8.0.1",
+    "path": "^0.12.7",
+    "stylelint": "9.10.x",
+    "stylelint-config-htmlacademy": "0.1.x",
+    "webpack": "^4.43.0",
+    "webpack-stream": "5.2.1"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "13.10.0"
+  }
+}

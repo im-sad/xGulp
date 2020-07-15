@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>@@title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="description">
+
+<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+<noscript><div class="noJs">Для полноценной работы сайта, необходимо включить JavaScript!</div></noscript>
+
+<script>
+(function() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'img/sprite.svg', true);
+  xhr.send();
+  xhr.onload = function() {
+    var div = document.createElement('div');
+    div.className = 'visually-hidden';
+    div.innerHTML = xhr.responseText;
+    document.body.insertBefore(div, document.body.childNodes[0]);
+  }
+})();
+</script>

@@ -1,0 +1,22 @@
+@mixin font-size($size, $lineHeight) {
+  font-size: $size;
+  line-height: $lineHeight / $size;
+}
+
+@mixin flex-width($width) {
+  width: $width;
+  max-width: $width;
+  flex: 0 0 $width;
+  min-width: 1px;
+}
+
+@mixin better-fonts() { // For dark backgrounds
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin retina {
+  @media (min-resolution: $retina-dpi), (min-resolution: $retina-dppx) {
+    @content;
+  }
+}
