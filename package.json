@@ -13,7 +13,7 @@
     "build": "gulp build",
     "stylelint": "stylelint \"src/sass/**/*.scss\" --syntax scss",
     "eslint": "eslint src/js/",
-    "test": "npm run stylelint && npm run eslint"
+    "lint": "npm run stylelint && npm run eslint"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.10.4",
@@ -32,6 +32,7 @@
     "gulp-csscomb": "^3.1.0",
     "gulp-env": "^0.4.0",
     "gulp-file-include": "^2.2.2",
+    "gulp-html-bem-validator": "^1.0.5",
     "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^7.1.0",
     "gulp-notify": "^3.2.0",
@@ -43,6 +44,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-svgstore": "^7.0.1",
     "gulp-uglify": "^3.0.2",
+    "gulp-w3c-html-validator": "^2.0.1",
     "gulp-webp": "^4.0.1",
     "node-notifier": "^7.0.1",
     "normalize.css": "^8.0.1",

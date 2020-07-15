@@ -5,6 +5,8 @@ import notifier from 'node-notifier';
 import browserSync from 'browser-sync';
 import plumber from 'gulp-plumber';
 import htmlmin from 'gulp-htmlmin';
+import htmlValidator from 'gulp-w3c-html-validator';
+import gulpHtmlBemValidator from 'gulp-html-bem-validator';
 import postcss from 'gulp-postcss';
 import sass from 'gulp-sass';
 import sassGlob from 'gulp-sass-glob';
@@ -56,6 +58,9 @@ function html(done) {
   gulp.src(paths.src.html)
   .pipe(plumber())
   .pipe(fileinclude())
+  .pipe(htmlValidator())
+  .pipe(htmlValidator.reporter())
+  .pipe(gulpHtmlBemValidator())
   .pipe(gulp.dest(paths.build.html));
 
   done();
@@ -232,4 +237,4 @@ export default gulp.series(
   watchFiles
 );
 
-export {build, scripts, scriptsMin, svgSprite, svgSpriteMin, htmlMin, webpConvert, svg, svgMin, images, imagesMin};
+export {build, scripts, scriptsMin, svgSprite, svgSpriteMin, html, htmlMin, webpConvert, svg, svgMin, images, imagesMin};
