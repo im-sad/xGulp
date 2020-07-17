@@ -229,7 +229,7 @@ function watchFiles(done) {
 }
 
 // Compile
-const build = gulp.series(clean, gulp.parallel(html, stylesMin, scriptsMin, svgSpriteMin, imagesMin));
+const build = gulp.series(clean, gulp.parallel(html, stylesMin, scriptsMin, svgSpriteMin, webpConvert, svgMin, imagesMin));
 
 export default gulp.series(
   clean,
