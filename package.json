@@ -13,7 +13,7 @@
     "build": "gulp build",
     "stylelint": "stylelint \"src/sass/**/*.scss\" --syntax scss",
     "eslint": "eslint src/js/",
-    "lint": "npm run stylelint && npm run eslint"
+    "test": "npm run stylelint && npm run eslint"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.10.4",
