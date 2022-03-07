@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="html">
 <head>
 <title>@@title</title>
 <meta charset="UTF-8">
@@ -7,15 +7,16 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="description" content="description">
 
+<!-- <link rel="preload" href="./fonts/font.woff2" as="font" type="font/woff2" crossorigin /> -->
 <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body>
-<noscript><div class="noJs">Для полноценной работы сайта, необходимо включить JavaScript!</div></noscript>
+<body class="body">
+<noscript><div class="noscript">Для полноценной работы сайта, необходимо включить JavaScript!</div></noscript>
 
 <script>
 (function() {
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open('GET', 'img/sprite.svg', true);
   xhr.send();
   xhr.onload = function() {
