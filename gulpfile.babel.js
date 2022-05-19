@@ -5,7 +5,6 @@ import notifier from 'node-notifier';
 import browserSync from 'browser-sync';
 import plumber from 'gulp-plumber';
 import htmlmin from 'gulp-htmlmin';
-import gulpHtmlBemValidator from 'gulp-html-bem-validator';
 import postcss from 'gulp-postcss';
 import gulpSass from "gulp-sass";
 import dartSass from "sass";
@@ -22,7 +21,7 @@ import imagemin from 'gulp-imagemin';
 import svgstore from 'gulp-svgstore';
 import webp from 'gulp-webp';
 import env from 'gulp-env';
-
+import replace from 'gulp-replace';
 
 import {paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg, fileInclude} from './gulp.config';
 const server = browserSync.create();
@@ -58,6 +57,7 @@ function html(done) {
   gulp.src(paths.src.html)
   .pipe(plumber())
   .pipe(fileinclude(fileInclude))
+  .pipe(replace('##hash##', Date.now()))
   // .pipe(gulpHtmlBemValidator())
   .pipe(gulp.dest(paths.build.html));
 
