@@ -3,7 +3,7 @@ const paths = {
     html: `src/html/*.html`,
     style: `src/sass/*.scss`,
     js: `src/js/*.js`,
-    img: [`src/img/**/*.{jpg,png}`, `!src/img/sprite/**/*`],
+    img: [`src/img/**/*.{jpg,png,svg}`, `!src/img/sprite/**/*`],
     svg: [`src/img/**/*.svg`, `!src/img/sprite/**/*`],
     spriteIcns: `src/img/sprite/*.svg`,
     fonts: `src/fonts/**/*.*`
@@ -20,7 +20,7 @@ const paths = {
     html: `src/html/**/*.html`,
     style: `src/sass/**/*.scss`,
     js: `src/js/**/*.js`,
-    img: [`src/img/**/*.{png,jpg}`, `!src/img/sprite/**/*`],
+    img: [`src/img/**/*.{png,jpg,svg}`, `!src/img/sprite/**/*`],
     svg: [`src/img/**/*.svg`, `!src/img/sprite/**/*`],
     spriteIcns: `src/img/sprite/*.{svg}`,
     fonts: `src/fonts/**/*.*`
@@ -82,5 +82,9 @@ const imageminCfg = {
   },
 }
 
+const fileInclude = {
+  indent: true
+}
 
-export {paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg};
+
+export { paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg, fileInclude };

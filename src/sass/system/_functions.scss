@@ -1,0 +1,3 @@
+@function percent-from($all-width, $el-width) {
+  @return #{$el-width / ($all-width / 100)}#{'%'};
+}

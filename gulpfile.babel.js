@@ -5,10 +5,10 @@ import notifier from 'node-notifier';
 import browserSync from 'browser-sync';
 import plumber from 'gulp-plumber';
 import htmlmin from 'gulp-htmlmin';
-import htmlValidator from 'gulp-w3c-html-validator';
 import gulpHtmlBemValidator from 'gulp-html-bem-validator';
 import postcss from 'gulp-postcss';
-import sass from 'gulp-sass';
+import gulpSass from "gulp-sass";
+import dartSass from "sass";
 import sassGlob from 'gulp-sass-glob';
 import autoprefixer from 'autoprefixer';
 import mqpacker from 'css-mqpacker';
@@ -24,9 +24,9 @@ import webp from 'gulp-webp';
 import env from 'gulp-env';
 
 
-import {paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg} from './gulp.config';
+import {paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg, fileInclude} from './gulp.config';
 const server = browserSync.create();
-sass.compiler = require(`node-sass`);
+const sass = gulpSass(dartSass);
 
 
 // Functions
@@ -57,10 +57,8 @@ function copyFonts(done) {
 function html(done) {
   gulp.src(paths.src.html)
   .pipe(plumber())
-  .pipe(fileinclude())
-  .pipe(htmlValidator())
-  .pipe(htmlValidator.reporter())
-  .pipe(gulpHtmlBemValidator())
+  .pipe(fileinclude(fileInclude))
+  // .pipe(gulpHtmlBemValidator())
   .pipe(gulp.dest(paths.build.html));
 
   done();
@@ -69,7 +67,7 @@ function html(done) {
 function htmlMin(done) {
   gulp.src(paths.src.html)
   .pipe(plumber())
-  .pipe(fileinclude())
+  .pipe(fileinclude(fileInclude))
   .pipe(htmlmin(htmlminCfg))
   .pipe(gulp.dest(paths.build.html));
 
