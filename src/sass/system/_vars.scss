@@ -1,4 +1,5 @@
 // Base
+$node-modules: '../../node_modules';
 $width: 1200px;
 $bg: #eee;
 $url-img: '../img/bg';
@@ -35,11 +36,13 @@ $font-Verdana: 'Verdana', 'Geneva CY', 'DejaVu Sans', sans-serif;
 
 // Font
 $font-base-size: 16px;
-$font-base-lh: 1.5;
+$font-base-lh: #{calc(22px / 16px)};
 $font-family: $font-Trebuchet;
-
 $form-line-height: 1.25;
 
+// Z-index
+$z-header: 99;
+$z-menu: 98;
 
 // Media
 $media-xs: 320px;

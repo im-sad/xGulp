@@ -1,6 +1,6 @@
 @mixin font-size($size, $lineHeight) {
   font-size: $size;
-  line-height: $lineHeight / $size;
+  line-height: calc($lineHeight / $size);
 }
 
 @mixin flex-width($width) {
@@ -31,6 +31,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@mixin btn-reset() {
+  border: 0;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+
+// MEDIA
+@mixin media($media) {
+  @if $media == fullhd {
+    @media only screen and (max-width: $media-fullhd) { @content; }
+  }
+  @else if $media == fullhd-min {
+    @media only screen and (min-width: $media-fullhd + 1) { @content; }
+  }
+  @else if $media == last {
+    @media only screen and (max-width: $media-last) { @content; }
+  }
+}
+
 @mixin retina {
   @media (min-resolution: $retina-dpi), (min-resolution: $retina-dppx) {
     @content;
@@ -40,5 +62,13 @@
 @mixin nohover {
   @media (hover: hover), screen and (min-width: 0\0) {
     @content;
+  }
+}
+
+@mixin size($property, $size) {
+  #{$property}: size($size);
+
+  @include media(fullhd) {
+    #{$property}: $size;
   }
 }
