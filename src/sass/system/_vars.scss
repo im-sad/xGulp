@@ -1,5 +1,4 @@
 // Base
-$node-modules: '../../node_modules';
 $width: 1200px;
 $bg: #eee;
 $url-img: '../img/bg';
@@ -43,6 +42,10 @@ $font-base-size: 16px;
 $font-base-lh: #{calc(22px / 16px)};
 $font-family: $font-Trebuchet;
 $form-line-height: 1.25;
+
+// Forms
+$field-base: 40px;
+$btn-line-height: $form-line-height;
 
 // Z-index
 $z-header: 99;
