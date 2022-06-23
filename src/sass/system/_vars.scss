@@ -33,6 +33,10 @@ $font-TimesNew: 'Times New Roman', 'Times CY', 'Nimbus Roman No9 L', serif;
 $font-Trebuchet: 'Trebuchet MS', 'Helvetica CY', sans-serif;
 $font-Verdana: 'Verdana', 'Geneva CY', 'DejaVu Sans', sans-serif;
 
+// Transitions (https://easings.net/ru)
+$trans-fast: 0.1s ease;
+$trans-base: 0.3s ease;
+$trans-long: 0.5s ease;
 
 // Font
 $font-base-size: 16px;
