@@ -2,6 +2,7 @@ const paths = {
   // Source files
   src: {
     html: `src/html/*.html`,
+    pug: `src/pug/pages/*.pug`,
     style: `src/sass/*.scss`,
     js: `src/js/*.js`,
     img: [`src/img/**/*.{jpg,png,svg}`, `!src/img/sprite/**/*`],
@@ -12,6 +13,7 @@ const paths = {
   // Result files
   build: {
     html: `build/`,
+    pug: `build/`,
     style: `build/css/`,
     js: `build/js/`,
     img: `build/img/`,
@@ -21,6 +23,7 @@ const paths = {
   // Watch files
   watch: {
     html: `src/html/**/*.html`,
+    pug: `src/pug/**/*.pug`,
     style: `src/sass/**/*.scss`,
     js: `src/js/**/*.js`,
     img: [`src/img/**/*.{png,jpg,svg}`, `!src/img/sprite/**/*`],
