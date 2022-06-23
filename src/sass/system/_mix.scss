@@ -43,13 +43,21 @@
 // MEDIA
 @mixin media($media) {
   @if $media == fullhd {
-    @media only screen and (max-width: $media-fullhd) { @content; }
+    @media only screen and (max-width: $media-fullhd) {
+      @content;
+    }
   }
+
   @else if $media == fullhd-min {
-    @media only screen and (min-width: $media-fullhd + 1) { @content; }
+    @media only screen and (min-width: calc($media-fullhd + 1px)) {
+      @content;
+    }
   }
+
   @else if $media == last {
-    @media only screen and (max-width: $media-last) { @content; }
+    @media only screen and (max-width: $media-last) {
+      @content;
+    }
   }
 }
 
