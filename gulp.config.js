@@ -1,5 +1,6 @@
 const paths = {
-  src: { // Source files
+  // Source files
+  src: {
     html: `src/html/*.html`,
     style: `src/sass/*.scss`,
     js: `src/js/*.js`,
@@ -8,7 +9,8 @@ const paths = {
     spriteIcns: `src/img/sprite/*.svg`,
     fonts: `src/fonts/**/*.*`
   },
-  build: { // Result files
+  // Result files
+  build: {
     html: `build/`,
     style: `build/css/`,
     js: `build/js/`,
@@ -16,7 +18,8 @@ const paths = {
     sprite: `build/img/sprite.svg`,
     fonts: `build/fonts/`
   },
-  watch: { // Watch files
+  // Watch files
+  watch: {
     html: `src/html/**/*.html`,
     style: `src/sass/**/*.scss`,
     js: `src/js/**/*.js`,
@@ -26,17 +29,17 @@ const paths = {
     fonts: `src/fonts/**/*.*`
   },
   clean: `build`
-};
+}
 
 const autoprefixerCfg = {
   grid: true,
-};
+}
 
 const sassCfg = {
   outputStyle: `expanded`,
   precision: 8,
   errLogToConsole: true,
-};
+}
 
 const serverCfg = {
   server: {
@@ -48,7 +51,7 @@ const serverCfg = {
   port: 9000,
   notify: false,
   logPrefix: `xGulp`
-};
+}
 
 const svgoCfg = {
   plugins: [
@@ -56,7 +59,7 @@ const svgoCfg = {
     {removeRasterImages: true},
     {removeUselessStrokeAndFill: false},
   ]
-};
+}
 
 const htmlminCfg = {
   removeComments: true,
@@ -64,13 +67,13 @@ const htmlminCfg = {
   minifyCSS: true,
   minifyJS: true,
   removeScriptTypeAttributes: true,
-};
+}
 
 const webpCfg = {
   preset: `photo`,
   quality: 60,
   method: 6 // 0 (fastest) and 6 (slowest)
-};
+}
 
 const imageminCfg = {
   png: {
@@ -87,4 +90,4 @@ const fileInclude = {
 }
 
 
-export { paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg, fileInclude };
+export { paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg, fileInclude }
