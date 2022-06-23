@@ -69,6 +69,10 @@ const htmlminCfg = {
   removeScriptTypeAttributes: true,
 }
 
+const pugConfig = {
+  pretty: true
+}
+
 const webpCfg = {
   preset: `photo`,
   quality: 60,
@@ -90,4 +94,4 @@ const fileInclude = {
 }
 
 
-export { paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg, fileInclude }
+export { paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, pugConfig, webpCfg, imageminCfg, fileInclude }

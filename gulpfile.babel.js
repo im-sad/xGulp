@@ -22,31 +22,35 @@ import svgstore from 'gulp-svgstore'
 import webp from 'gulp-webp'
 import env from 'gulp-env'
 import replace from 'gulp-replace'
+import pug from 'gulp-pug'
+import cached from 'gulp-cached'
 
-import { paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg, fileInclude } from './gulp.config'
+import {
+  paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg, fileInclude, pugConfig
+} from './gulp.config'
 const server = browserSync.create()
 const sass = gulpSass(dartSass)
 
 
-function clean(done) {
+const clean = (done) => {
   del.sync(paths.clean)
 
   done()
 }
 
-function reloadServer(done) {
+const reloadServer = (done) => {
   server.reload()
 
   done()
 }
 
-function localServer(done) {
+const localServer = (done) => {
   server.init(serverCfg)
 
   done()
 }
 
-function copyFonts(done) {
+const copyFonts = (done) => {
   gulp.src(paths.src.fonts)
   .pipe(changed(paths.build.fonts))
   .pipe(gulp.dest(paths.build.fonts))
@@ -56,7 +60,18 @@ function copyFonts(done) {
 
 
 // Html
-function html(done) {
+const pugToHtml = (done) => {
+  gulp.src(paths.src.pug)
+  .pipe(plumber())
+  .pipe(replace('##hash##', Date.now()))
+  .pipe(pug(pugConfig))
+  .pipe(cached('pug'))
+  .pipe(gulp.dest(paths.build.pug))
+
+  done()
+}
+
+const html = (done) => {
   gulp.src(paths.src.html)
   .pipe(plumber())
   .pipe(fileinclude(fileInclude))
@@ -67,7 +82,7 @@ function html(done) {
   done()
 }
 
-function htmlMin(done) {
+const htmlMin = (done) => {
   gulp.src(paths.src.html)
   .pipe(plumber())
   .pipe(fileinclude(fileInclude))
@@ -79,7 +94,7 @@ function htmlMin(done) {
 
 
 // Styles
-function styles(done) {
+const styles = (done) => {
   gulp.src(paths.src.style)
   .pipe(plumber())
   .pipe(sassGlob())
@@ -100,7 +115,7 @@ function styles(done) {
   done()
 }
 
-function stylesMin(done) {
+const stylesMin = (done) => {
   gulp.src(paths.src.style)
   .pipe(plumber())
   .pipe(sassGlob())
@@ -117,12 +132,13 @@ function stylesMin(done) {
   .pipe(cleanCSS({level: 2})) // 1 or 2
   .pipe(rename({suffix: `.min`}))
   .pipe(gulp.dest(paths.build.style))
+  .pipe(server.stream())
 
   done()
 }
 
 // Scripts
-function scripts(done) {
+const scripts = (done) => {
   env.set({
     NODE_ENV: 'development'
   })
@@ -135,7 +151,7 @@ function scripts(done) {
   done()
 }
 
-function scriptsMin(done) {
+const scriptsMin = (done) => {
   env.set({
     NODE_ENV: 'production'
   })
@@ -150,7 +166,7 @@ function scriptsMin(done) {
 
 
 // Graphic
-function images(done) {
+const images = (done) => {
   gulp.src(paths.src.img)
   .pipe(changed(paths.build.img))
   .pipe(gulp.dest(paths.build.img))
@@ -158,7 +174,7 @@ function images(done) {
   done()
 }
 
-function imagesMin(done) {
+const imagesMin = (done) => {
   gulp.src(paths.src.img)
   .pipe(changed(paths.build.img))
   .pipe(imagemin([
@@ -170,7 +186,7 @@ function imagesMin(done) {
   done()
 }
 
-function webpConvert(done) {
+const webpConvert = (done) => {
   gulp.src(paths.src.img)
   .pipe(webp(webpCfg))
   .pipe(gulp.dest(paths.build.img))
@@ -178,14 +194,14 @@ function webpConvert(done) {
   done()
 }
 
-function svg(done) {
+const svg = (done) => {
   gulp.src(paths.src.svg)
   .pipe(gulp.dest(paths.build.img))
 
   done()
 }
 
-function svgMin(done) {
+const svgMin = (done) => {
   gulp.src(paths.src.svg)
   .pipe(imagemin([
     imagemin.svgo(svgoCfg),
@@ -195,7 +211,7 @@ function svgMin(done) {
   done()
 }
 
-function svgSprite(done) {
+const svgSprite = (done) => {
   gulp.src(paths.src.spriteIcns)
   .pipe(svgstore({inlineSvg: true}))
   .pipe(gulp.dest(paths.build.img))
@@ -203,7 +219,7 @@ function svgSprite(done) {
   done()
 }
 
-function svgSpriteMin(done) {
+const svgSpriteMin = (done) => {
   gulp.src(paths.src.spriteIcns)
   .pipe(imagemin([
     imagemin.svgo(svgoCfg),
@@ -216,9 +232,9 @@ function svgSpriteMin(done) {
 
 
 // Watch files
-function watchFiles(done) {
+const watchFiles = (done) => {
   gulp.watch(paths.watch.html, gulp.series(html, reloadServer))
-  gulp.watch(paths.watch.style, gulp.series(styles, reloadServer))
+  gulp.watch(paths.watch.style, styles)
   gulp.watch(paths.watch.js, gulp.series(scripts, reloadServer))
   gulp.watch(paths.watch.fonts, gulp.series(copyFonts, reloadServer))
   gulp.watch(paths.watch.spriteIcns, gulp.series(svgSprite, reloadServer))
@@ -231,13 +247,13 @@ function watchFiles(done) {
 // Compile
 const build = gulp.series(
   clean,
-  gulp.parallel(html, stylesMin, scriptsMin, svgSpriteMin, webpConvert, svgMin, imagesMin)
+  gulp.parallel(pugToHtml, stylesMin, scriptsMin, svgSpriteMin, webpConvert, svgMin, imagesMin)
 )
 
 export default gulp.series(
   clean,
-  gulp.parallel(html, styles, scripts, svgSprite, copyFonts, webpConvert, images, localServer),
+  gulp.parallel(pugToHtml, styles, scripts, svgSprite, copyFonts, webpConvert, images, localServer),
   watchFiles
 )
 
-export { build, scripts, scriptsMin, svgSprite, svgSpriteMin, html, htmlMin, webpConvert, svg, svgMin, images, imagesMin }
+export { build, scripts, scriptsMin, svgSprite, svgSpriteMin, html, htmlMin, pugToHtml, webpConvert, svg, svgMin, images, imagesMin }
