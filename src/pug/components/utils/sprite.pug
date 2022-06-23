@@ -1,0 +1,16 @@
+mixin sprite()
+  script.
+    (function() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', './img/sprite.svg', true);
+      xhr.send();
+      xhr.onload = function() {
+        var div = document.createElement('div');
+        div.className = 'visually-hidden';
+        div.innerHTML = xhr.responseText;
+        document.body.insertBefore(div, document.body.childNodes[0]);
+      }
+    })();
+
+//- обязательно редактируйте id в svg с дефолтных на кастомные
+//- visually-hidden позволит маскам и градиентам работать из спрайта, но нужно задать уникальные имена

@@ -1,0 +1,9 @@
+.logo {
+  display: inline-block;
+  vertical-align: top;
+  background: url('#{$url-img}/gulp.svg') no-repeat 0 0;
+  background-size: 48px 48px;
+  text-indent: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}

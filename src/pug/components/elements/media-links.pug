@@ -1,0 +1,6 @@
+mixin media-links(data = [])
+  ul.media-links&attributes(attributes)
+    each item in data
+      li.media-links__item
+        a.media-links__link(href=item.href)
+          +icn(item.icn, 56, 56).media-links__icn

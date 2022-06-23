@@ -1,0 +1,74 @@
+extends ../components/base/layout
+
+block variables
+  - const title = "Список страниц"
+  -
+    const pages = [
+      {
+        name: "UI-kit — ui-kit.html",
+        src: "ui-kit.html"
+      },
+      {
+        name: "Главная — index.html",
+        src: "index.html"
+      },
+      {
+        name: "Ошибка — 404.html",
+        src: "404.html"
+      },
+    ];
+
+block main
+  style.
+    .container {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 28px;
+      margin: 0 0 20px;
+      font-weight: 400;
+    }
+
+    a {
+      color: rgba(233, 242, 243, 0.6);
+    }
+
+    a:hover {
+      color: rgba(233, 242, 243, 0.8);
+      text-decoration: underline;
+    }
+
+    .wrapper {
+      border-radius: 20px;
+      padding: 20px;
+      width: 500px;
+      margin: auto;
+      background: #7482FF;
+    }
+
+    ol {
+      color: rgba(233, 242, 243, 0.6);
+      list-style-type: decimal;
+      margin: 0 0 0 20px;
+    }
+
+    li {
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 7px;
+    }
+
+  main.container
+    .wrapper
+      h1 Список страниц
+      ol
+        each page in pages
+          li
+            a(href= page.src)= page.name

@@ -1,0 +1,41 @@
+doctype html
+
+include ../components
+
+block variables
+
+html(lang="ru")
+  head
+    title= title
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    meta(name="description", content="")
+    //- генерируйте favicon тут - https://realfavicongenerator.net/
+    //- в подключение фавикон манифеста обязательно добавьте строчки crossorigin="use-credentials"
+
+    //- link(rel="preload", href="fonts/roboto/Roboto-Regular.woff2", as="font", crossorigin="anonymous")
+    link(rel="stylesheet", href="css/style.css")
+
+
+  body(class=bodyMods)
+    noscript
+      .noscript Для полноценной работы сайта, необходимо включить JavaScript!
+
+    +preloader()
+    +sprite()
+    .page(class=pageMods)
+      .page__core
+        if (hasHeader)
+          +header(headerMods, currentUrl)
+
+        block main
+
+      if (hasFooter)
+        +footer(footerMods)
+
+
+    block modals
+
+    script(src="js/libs.js")
+    script(src="js/main.js")

@@ -1,0 +1,7 @@
+mixin picture(path, image, format, width, height, altText, sources = [])
+  picture.picture&attributes(attributes)
+    each source in sources
+      source(type="image/" + source[0], media="(max-width:" + source[1] + "px)", srcset="img/" + path + "/" + source[2] + "." + source[0] + ", " + "img/" + path + "/" + source[2] + "@2x." + source[0] + " 2x")
+
+    source(type='image/webp', srcset="img/" + path + "/" + image + ".webp" + ", " + "img/" + path + "/" + image + "@2x.webp" + " 2x")
+    img(src="img/" + path + "/" + image + "." + format, srcset= "img/" + path + "/" + image + "@2x." + format + " 2x", width= width, height= height, alt= altText)

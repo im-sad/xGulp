@@ -1,0 +1,12 @@
+mixin feedback-form()
+
+  .feedback-form(data-validate)&attributes(attributes)
+    form.feedback-form__wrapper(action="#", method="post")
+          +field()(data-validate-type="text")
+            +input({size: "base", placeholder:"имя*"})(name="user-name", data-error="заполните все обязательные поля")
+          +btn({
+            size:"base",
+            mod:"fluid",
+            hasArrow: true
+          })(type="submit").btn-primary тык-тык
+

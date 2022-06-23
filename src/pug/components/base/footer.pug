@@ -1,0 +1,83 @@
+mixin footer(footerMods)
+  -
+    const menu1 = [
+      {
+        title: "что внутри",
+        href: "./#what-inside",
+      },
+      {
+        title: "что это такое",
+        href: "./#what-is-it",
+      },
+      {
+        title: "как воспользоваться",
+        href: "./#how-use",
+      },
+    ]
+    const menu2 = [
+      {
+        title: "календарь ивентов",
+        href: "./#events-calendar",
+      },
+      {
+        title: "кто придумал",
+        href: "./#who-made",
+      },
+      {
+        title: "задать вопрос",
+        href: "./#have-question",
+      },
+    ]
+
+  footer.footer(class=footerMods)
+    .width
+      .footer__core
+        .footer__head
+          a.footer__logo(href="/")
+            +img('bg', 'logo', 'svg', 259, 52).footer__logo-img
+
+          a.footer__up.up(href="#top", data-move)
+            .up__text наверх
+            +icn('icn-tarr', 24, 24).up__icn
+
+        .footer__body
+          .footer__body-row.row
+            .footer__body-col.footer__body-col--nav.col-7
+              strong.footer__title Навигация
+              .footer__nav
+                ul.footer__nav-list.footer__list
+                  each item in menu1
+                    li.footer__list-item
+                      a.footer__list-link(href=item.href, data-move)
+                        span.footer__list-text=item.title
+                ul.footer__nav-list.footer__list
+                  each item in menu2
+                    li.footer__list-item
+                      a.footer__list-link(href=item.href, data-move)
+                        span.footer__list-text=item.title
+
+            .footer__body-col.footer__body-col--contacts.col-5
+              .footer__contacts
+                .footer__contacts-block
+                  strong.footer__title контакты
+                  ul.footer__list
+                    li.footer__list-item
+                      a.footer__list-link(href="tel:+79999999999")
+                        +icn('icn-phone', 16, 16).footer__list-icn
+                        span.footer__list-text +7 (999) 999-99-99
+                    li.footer__list-item
+                      a.footer__list-link(href="mailto:hello@multipods.com")
+                        +icn('icn-mail', 16, 16).footer__list-icn
+                        span.footer__list-text hello@multipods.com
+                .footer__contacts-block
+                  strong.footer__title Cоц. сети
+                  +media-links(socialsFooter).footer__media
+
+        .footer__bottom
+          .footer__bottom-info
+            span.footer__copy &copy;multipods, 2022
+            a.footer__politic(href="#") политика конфедициальности
+
+          a.footer__cedro.cedro(href="#", rel="nofollow noopener noreferrer")
+            .cedro__text сайт сделан в cedro
+            +icn('cedro', 20, 18).cedro__icn

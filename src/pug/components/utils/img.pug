@@ -1,0 +1,5 @@
+mixin img(path, image, format, width, height, altText)
+  if format === 'svg'
+    img(src="img/" + path + "/" + image + "." + format, width= width, height= height, alt= altText)&attributes(attributes)
+  else
+    img(src="img/" + path + "/" + image + "." + format, srcset= "img/" + path + "/" + image + "@2x." + format + " 2x", width= width, height= height, alt= altText)&attributes(attributes)

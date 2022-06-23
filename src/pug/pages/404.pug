@@ -1,0 +1,18 @@
+extends ../components/base/layout
+
+block variables
+  - const title = "xGulp - 404"
+  - const hasHeader = true
+  - const hasFooter = true
+  - const pageMods = ""
+  - const headerMods = ""
+  - const footerMods = ""
+  - const currentUrl = "" //- индекс активного пункта меню
+
+block main
+  +section-error()
+
+
+block modals
+  +modal({close: true})(data-modal="modal-feedback").modal--feedback
+    +modal-feedback()

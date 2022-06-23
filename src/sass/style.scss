@@ -9,5 +9,8 @@
 @import 'system/typography';
 @import 'system/utils';
 
-// Sections
+// Core styles
+@import 'elements/*.scss';
+@import 'ui/*.scss';
+@import 'blocks/*.scss';
 @import 'sections/*.scss';

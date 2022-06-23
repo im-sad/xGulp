@@ -1,0 +1,10 @@
+mixin header(headerMods, currentUrl)
+  header.header(class=headerMods)
+    .width.width--fluid
+      .header__core
+        a.header__logo(href="/")
+          +img('bg', 'logo', 'svg', 110, 22, 'Multipods')
+        .header__controls
+          +btn({hasArrow: true, size:"small"})(data-open-modal="modal-reserve").btn-transparent.header__reserve
+            | Забронировать
+          button(type="button", id="js-burger", aria-label="Открыть/закрыть меню", data-burger="#nav").header__burger.burger
