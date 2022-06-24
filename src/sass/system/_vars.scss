@@ -52,8 +52,15 @@ $z-header: 99;
 $z-menu: 98;
 
 // Media
-$media-xs: 320px;
-$media-sm: 480px;
-$media-md: 620px;
-$media-lg: 960px;
-$media-xl: 1200px;
+$media-last: 375px;
+$media-phone: 480px;
+$media-smartphone: 620px;
+$media-tablet: 768px;
+$media-notebook: 960px;
+$media-desktop: 1024px;
+$media-hd: 1280px;
+$media-fullhd: 1920px;
+
+// Retina
+$retina-dpi: 144dpi;
+$retina-dppx: 1.5dppx;

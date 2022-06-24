@@ -26,6 +26,15 @@
   word-wrap: break-word;
 }
 
+@mixin hide-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @mixin better-fonts() { // For dark backgrounds
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,42 +50,69 @@
 
 
 // MEDIA
+// Универсальный миксин для медиа-запросов
 @mixin media($media) {
   @if $media == fullhd {
-    @media only screen and (max-width: $media-fullhd) {
-      @content;
-    }
+    @media only screen and (max-width: calc($media-fullhd - 1px)) { @content; }
   }
 
   @else if $media == fullhd-min {
-    @media only screen and (min-width: calc($media-fullhd + 1px)) {
+    @media only screen and (min-width: calc($media-fullhd + 1px)) { @content; }
+  }
+
+  @else if $media == hd {
+    @media only screen and (max-width: calc($media-hd - 1px)) { @content; }
+  }
+
+  @else if $media == hd-min {
+    @media only screen and (min-width: calc($media-hd + 1px)) { @content; }
+  }
+
+  @else if $media == desktop {
+    @media only screen and (max-width: calc($media-desktop - 1px)) { @content; }
+  }
+
+  @else if $media == desktop-min {
+    @media only screen and (min-width: calc($media-desktop + 1px)) { @content; }
+  }
+
+  @else if $media == notebook {
+    @media only screen and (max-width: calc($media-notebook - 1px)) { @content; }
+  }
+
+  @else if $media == notebook-min {
+    @media only screen and (min-width: calc($media-notebook + 1px)) { @content; }
+  }
+
+  @else if $media == tablet {
+    @media only screen and (max-width: calc($media-tablet - 1px)) { @content; }
+  }
+
+  @else if $media == tablet-min {
+    @media only screen and (min-width: calc($media-tablet + 1px)) { @content; }
+  }
+
+  @else if $media == smartphone {
+    @media only screen and (max-width: calc($media-smartphone - 1px)) { @content; }
+  }
+
+  @else if $media == smartphone-min {
+    @media only screen and (min-width: calc($media-smartphone + 1px)) { @content; }
+  }
+
+  @else if $media == end {
+    @media only screen and (max-width: calc($media-end - 1px)) { @content; }
+  }
+
+  @else if $media == retina {
+    @media (min-resolution: $retina-dpi), (min-resolution: $retina-dppx) {
       @content;
     }
   }
 
-  @else if $media == last {
-    @media only screen and (max-width: $media-last) {
+  @else if $media == hover {
+    @media (hover: hover), screen and (min-width: 0\0) {
       @content;
     }
-  }
-}
-
-@mixin retina {
-  @media (min-resolution: $retina-dpi), (min-resolution: $retina-dppx) {
-    @content;
-  }
-}
-
-@mixin nohover {
-  @media (hover: hover), screen and (min-width: 0\0) {
-    @content;
-  }
-}
-
-@mixin size($property, $size) {
-  #{$property}: size($size);
-
-  @include media(fullhd) {
-    #{$property}: $size;
   }
 }
