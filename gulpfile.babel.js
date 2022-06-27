@@ -58,6 +58,12 @@ const copyFonts = (done) => {
   done()
 }
 
+const copyFavicon = (done) => {
+  gulp.src(paths.src.favicon)
+  .pipe(changed(paths.build.favicon))
+  .pipe(gulp.dest(paths.build.favicon))
+  done()
+}
 
 // Html
 const pugToHtml = (done) => {
@@ -230,6 +236,16 @@ const svgSpriteMin = (done) => {
   done()
 }
 
+const changeVersionToMin = (done) => {
+  gulp.src('build/**/*.html')
+  .pipe(replace('style.css', 'style.min.css'))
+  .pipe(replace('libs.js', 'style.min.css'))
+  .pipe(replace('main.js', 'main.min.js'))
+  .pipe(gulp.dest(paths.build.pug))
+
+  done()
+}
+
 
 // Watch files
 const watchFiles = (done) => {
@@ -237,6 +253,7 @@ const watchFiles = (done) => {
   gulp.watch(paths.watch.style, styles)
   gulp.watch(paths.watch.js, gulp.series(scripts, reloadServer))
   gulp.watch(paths.watch.fonts, gulp.series(copyFonts, reloadServer))
+  gulp.watch(paths.watch.favicon, gulp.series(copyFavicon, reloadServer))
   gulp.watch(paths.watch.spriteIcns, gulp.series(svgSprite, reloadServer))
   gulp.watch(paths.watch.svg, gulp.series(svg, reloadServer))
   gulp.watch(paths.watch.img, gulp.series(gulp.parallel(webpConvert, images), reloadServer))
@@ -247,13 +264,15 @@ const watchFiles = (done) => {
 // Compile
 const build = gulp.series(
   clean,
-  gulp.parallel(pugToHtml, stylesMin, scriptsMin, svgSpriteMin, webpConvert, svgMin, imagesMin)
+  gulp.parallel(pugToHtml, stylesMin, scriptsMin, svgSpriteMin, copyFonts, copyFavicon, webpConvert, svgMin, imagesMin)
 )
 
 export default gulp.series(
   clean,
-  gulp.parallel(pugToHtml, styles, scripts, svgSprite, copyFonts, webpConvert, images, localServer),
+  gulp.parallel(pugToHtml, styles, scripts, svgSprite, copyFonts, copyFavicon, webpConvert, images, localServer),
   watchFiles
 )
 
-export { build, scripts, scriptsMin, svgSprite, svgSpriteMin, html, htmlMin, pugToHtml, webpConvert, svg, svgMin, images, imagesMin }
+export {
+  build, scripts, scriptsMin, svgSprite, svgSpriteMin, html, htmlMin, pugToHtml, webpConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon
+}
