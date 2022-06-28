@@ -8,7 +8,8 @@ const paths = {
     img: [`src/img/**/*.{jpg,png,svg}`, `!src/img/sprite/**/*`],
     svg: [`src/img/**/*.svg`, `!src/img/sprite/**/*`],
     spriteIcns: `src/img/sprite/*.svg`,
-    fonts: `src/fonts/**/*.*`
+    fonts: `src/fonts/**/*.*`,
+    favicon: `src/favicon/*.*`
   },
   // Result files
   build: {
@@ -18,7 +19,8 @@ const paths = {
     js: `build/js/`,
     img: `build/img/`,
     sprite: `build/img/sprite.svg`,
-    fonts: `build/fonts/`
+    fonts: `build/fonts/`,
+    favicon: `build/`
   },
   // Watch files
   watch: {
@@ -29,7 +31,8 @@ const paths = {
     img: [`src/img/**/*.{png,jpg,svg}`, `!src/img/sprite/**/*`],
     svg: [`src/img/**/*.svg`, `!src/img/sprite/**/*`],
     spriteIcns: `src/img/sprite/*.{svg}`,
-    fonts: `src/fonts/**/*.*`
+    fonts: `src/fonts/**/*.*`,
+    favicon: `src/favicon/*.*`
   },
   clean: `build`
 }
