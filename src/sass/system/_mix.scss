@@ -10,6 +10,20 @@
   min-width: 1px;
 }
 
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin hyphens($symbol: '-') {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  hyphenate-character: $symbol;
+}
+
 @mixin text-overflow() {
   max-width: 100%;
   overflow: hidden;
@@ -35,7 +49,19 @@
   }
 }
 
-@mixin better-fonts() { // For dark backgrounds
+@mixin safari-radius() {
+  // Fix overflow from bd radius
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+@mixin better-fonts() {
+  // For dark backgrounds
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
