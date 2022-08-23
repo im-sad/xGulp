@@ -1,5 +1,13 @@
-// Import scripts
-import {scriptsWork} from './modules/log';
+import {setScrollWidth} from './utils/scroll-width';
+import {iosVhFix} from './utils/ios-vh-fix';
 
-// Init scripts
-scriptsWork();
+
+window.addEventListener('DOMContentLoaded', () => {
+  setScrollWidth();
+  iosVhFix();
+});
+
+// в load следует добавить скрипты, не участвующие в работе первого экрана
+window.addEventListener('load', () => {
+
+});
