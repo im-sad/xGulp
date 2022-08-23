@@ -1,3 +1,7 @@
-@function percent-from($all-width, $el-width) {
-  @return #{$el-width / ($all-width / 100)}#{'%'};
+@function unit-from($all-width, $el-width, $unit: '%') {
+  @return #{calc($el-width / ($all-width / 100))}#{$unit};
+}
+
+@function vh($vh-nums) {
+  @return calc(#{$vh-nums} * var(--vh, 1vh));
 }
