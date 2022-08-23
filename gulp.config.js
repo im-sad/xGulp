@@ -25,7 +25,7 @@ const paths = {
   // Watch files
   watch: {
     html: `src/html/**/*.html`,
-    pug: `src/pug/**/*.pug`,
+    pug: `src/pug/**/*.{pug,js}`,
     style: `src/sass/**/*.scss`,
     js: `src/js/**/*.js`,
     img: [`src/img/**/*.{png,jpg,svg}`, `!src/img/sprite/**/*`],
