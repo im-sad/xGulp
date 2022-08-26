@@ -2,7 +2,8 @@ module.exports = {
   extends: `htmlacademy/es6`,
   rules: {
     'no-console': 1,
-    allowTernary : true
+    'quotes': ['error', 'single', {allowTemplateLiterals: true}],
+    'no-unused-expressions': ['error', {allowTernary: true}],
   },
   root: true,
   globals: {
