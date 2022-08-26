@@ -24,6 +24,7 @@ import env from 'gulp-env'
 import replace from 'gulp-replace'
 import pug from 'gulp-pug'
 import cached from 'gulp-cached'
+import strip  from 'gulp-strip-comments'
 
 import {
   paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg, fileInclude, pugConfig
@@ -165,6 +166,7 @@ const scriptsMin = (done) => {
   gulp.src(paths.src.js)
   .pipe(plumber())
   .pipe(webpackStream( require(`./webpack.config.js`) ))
+  .pipe(strip())
   .pipe(gulp.dest(paths.build.js))
 
   done()
