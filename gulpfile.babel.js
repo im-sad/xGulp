@@ -118,6 +118,7 @@ const styles = (done) => {
   )
   .pipe(sourcemaps.write())
   .pipe(gulp.dest(paths.build.style))
+  .pipe(server.stream())
 
   done()
 }
@@ -219,7 +220,7 @@ const svgMin = (done) => {
   done()
 }
 
-const svgSprite = (done) => {
+const sprite = (done) => {
   gulp.src(paths.src.spriteIcns)
   .pipe(svgstore({inlineSvg: true}))
   .pipe(gulp.dest(paths.build.img))
@@ -227,7 +228,7 @@ const svgSprite = (done) => {
   done()
 }
 
-const svgSpriteMin = (done) => {
+const spriteMin = (done) => {
   gulp.src(paths.src.spriteIcns)
   .pipe(imagemin([
     imagemin.svgo(svgoCfg),
@@ -251,12 +252,13 @@ const changeVersionToMin = (done) => {
 
 // Watch files
 const watchFiles = (done) => {
-  gulp.watch(paths.watch.html, gulp.series(html, reloadServer))
+  // gulp.watch(paths.watch.html, gulp.series(html, reloadServer))
+  gulp.watch(paths.watch.pug, gulp.series(pugToHtml, reloadServer))
   gulp.watch(paths.watch.style, styles)
   gulp.watch(paths.watch.js, gulp.series(scripts, reloadServer))
   gulp.watch(paths.watch.fonts, gulp.series(copyFonts, reloadServer))
   gulp.watch(paths.watch.favicon, gulp.series(copyFavicon, reloadServer))
-  gulp.watch(paths.watch.spriteIcns, gulp.series(svgSprite, reloadServer))
+  gulp.watch(paths.watch.spriteIcns, gulp.series(sprite, reloadServer))
   gulp.watch(paths.watch.svg, gulp.series(svg, reloadServer))
   gulp.watch(paths.watch.img, gulp.series(gulp.parallel(webpConvert, images), reloadServer))
 
@@ -266,15 +268,15 @@ const watchFiles = (done) => {
 // Compile
 const build = gulp.series(
   clean,
-  gulp.parallel(pugToHtml, stylesMin, scriptsMin, svgSpriteMin, copyFonts, copyFavicon, webpConvert, svgMin, imagesMin)
+  gulp.parallel(pugToHtml, stylesMin, scriptsMin, spriteMin, copyFonts, copyFavicon, webpConvert, svgMin, imagesMin)
 )
 
 export default gulp.series(
   clean,
-  gulp.parallel(pugToHtml, styles, scripts, svgSprite, copyFonts, copyFavicon, webpConvert, images, localServer),
+  gulp.parallel(pugToHtml, styles, scripts, sprite, copyFonts, copyFavicon, webpConvert, images, localServer),
   watchFiles
 )
 
 export {
-  build, scripts, scriptsMin, svgSprite, svgSpriteMin, html, htmlMin, pugToHtml, webpConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon
+  build, scripts, scriptsMin, sprite, spriteMin, html, htmlMin, pugToHtml, webpConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon
 }
