@@ -1,5 +1,19 @@
-mixin img(path, image, format, width, height, altText)
+mixin img(data = {})
+  - const path = data.path || '';
+  - const name = data.name || '';
+  - const format = data.format || 'jpg';
+
   if format === 'svg'
-    img(src="img/" + path + "/" + image + "." + format, width= width, height= height, alt= altText)&attributes(attributes)
+    img(
+      src="img/" + path + "/" + name + "." + format,
+      width= data.width,
+      height= data.height
+    )&attributes(attributes)
   else
-    img(src="img/" + path + "/" + image + "." + format, srcset= "img/" + path + "/" + image + "@2x." + format + " 2x", width= width, height= height, alt= altText)&attributes(attributes)
+    img(
+      src="img/" + path + "/" + name + "." + format,
+      srcset= "img/" + path + "/" + name + "@2x." + format + " 2x",
+      width= width,
+      height= height,
+      alt= altText
+    )&attributes(attributes)
