@@ -2,6 +2,15 @@ body {
   background-color: $bg;
 }
 
+a {
+  text-underline-offset: 0.2em;
+  color: $color-link;
+
+  &:hover {
+    color: $color-link-hover;
+  }
+}
+
 .width {
   width: 100%;
   max-width: $width + (20px * 2);
