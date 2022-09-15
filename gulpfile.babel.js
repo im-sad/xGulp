@@ -70,9 +70,9 @@ const copyFavicon = (done) => {
 const pugToHtml = (done) => {
   gulp.src(paths.src.pug)
   .pipe(plumber())
-  .pipe(replace('##hash##', Date.now()))
   .pipe(pug(pugConfig))
   .pipe(cached('pug'))
+  .pipe(replace('##hash##', Date.now()))
   .pipe(gulp.dest(paths.build.pug))
 
   done()

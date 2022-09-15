@@ -1,0 +1,24 @@
+mixin textarea(options = {})
+  - const inputLabel = options.inputLabel ? options.inputLabel : false
+  - const placeholder = options.placeholder ? options.placeholder : false
+  - const inputError = options.inputError ? options.inputError : false
+  - const inputId = options.inputId ? options.inputId : false
+  - const inputName = options.inputName ? options.inputName : false
+  - const inputValue = options.inputValue ? options.inputValue : ''
+  - const inputMinLength = options.inputMinLength ? options.inputMinLength : false
+  - const inputMaxLength = options.inputMaxLength ? options.inputMaxLength : false
+  - const variant = options.variant ? `textarea-${options.variant}` : false
+  - const size = options.size ? `textarea--size-${options.size}` : false
+
+  textarea(
+    type=inputType,
+    id=inputId,
+    name=inputName,
+    minlength=inputMinLength,
+    maxlength=inputMaxLength,
+    placeholder=placeholder,
+    class="textarea",
+    class=variant,
+    class=size
+  )&attributes(attributes)
+    =inputValue
