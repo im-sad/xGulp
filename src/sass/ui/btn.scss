@@ -41,11 +41,4 @@
     width: 100%;
     display: flex;
   }
-
-
-  @include media(tablet) {
-    &--size-base {
-      height: $field-base-media;
-    }
-  }
 }
