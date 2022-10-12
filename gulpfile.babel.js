@@ -20,6 +20,7 @@ import changed from 'gulp-changed'
 import imagemin from 'gulp-imagemin'
 import svgstore from 'gulp-svgstore'
 import webp from 'gulp-webp'
+import gulpAvif from 'gulp-avif'
 import env from 'gulp-env'
 import replace from 'gulp-replace'
 import pug from 'gulp-pug'
@@ -51,6 +52,12 @@ const localServer = (done) => {
   done()
 }
 
+const updHash = () => {
+  gulp.src(paths.src.pug)
+  .pipe(replace('##hash##', Date.now()))
+  .pipe(gulp.dest(paths.build.pug))
+}
+
 const copyFonts = (done) => {
   gulp.src(paths.src.fonts)
   .pipe(changed(paths.build.fonts))
@@ -75,26 +82,7 @@ const pugToHtml = (done) => {
   .pipe(replace('##hash##', Date.now()))
   .pipe(gulp.dest(paths.build.pug))
 
-  done()
-}
-
-const html = (done) => {
-  gulp.src(paths.src.html)
-  .pipe(plumber())
-  .pipe(fileinclude(fileInclude))
-  .pipe(replace('##hash##', Date.now()))
-  // .pipe(gulpHtmlBemValidator())
-  .pipe(gulp.dest(paths.build.html))
-
-  done()
-}
-
-const htmlMin = (done) => {
-  gulp.src(paths.src.html)
-  .pipe(plumber())
-  .pipe(fileinclude(fileInclude))
-  .pipe(htmlmin(htmlminCfg))
-  .pipe(gulp.dest(paths.build.html))
+  updHash()
 
   done()
 }
@@ -120,6 +108,8 @@ const styles = (done) => {
   .pipe(gulp.dest(paths.build.style))
   .pipe(server.stream())
 
+  updHash()
+
   done()
 }
 
@@ -141,6 +131,8 @@ const stylesMin = (done) => {
   .pipe(rename({suffix: `.min`}))
   .pipe(gulp.dest(paths.build.style))
   .pipe(server.stream())
+
+  updHash()
 
   done()
 }
@@ -203,6 +195,14 @@ const webpConvert = (done) => {
   done()
 }
 
+const avifConvert = (done) => {
+  gulp.src(paths.src.img)
+  .pipe(gulpAvif())
+  .pipe(gulp.dest(paths.build.img))
+
+  done()
+}
+
 const svg = (done) => {
   gulp.src(paths.src.svg)
   .pipe(gulp.dest(paths.build.img))
@@ -250,6 +250,7 @@ const changeVersionToMin = (done) => {
 }
 
 
+
 // Watch files
 const watchFiles = (done) => {
   // gulp.watch(paths.watch.html, gulp.series(html, reloadServer))
@@ -268,15 +269,15 @@ const watchFiles = (done) => {
 // Compile
 const build = gulp.series(
   clean,
-  gulp.parallel(pugToHtml, stylesMin, scriptsMin, spriteMin, copyFonts, copyFavicon, webpConvert, svgMin, imagesMin)
+  gulp.parallel(pugToHtml, stylesMin, scriptsMin, spriteMin, copyFonts, copyFavicon, webpConvert, avifConvert, svgMin, imagesMin)
 )
 
 export default gulp.series(
   clean,
-  gulp.parallel(pugToHtml, styles, scripts, sprite, copyFonts, copyFavicon, webpConvert, images, localServer),
+  gulp.parallel(pugToHtml, styles, scripts, sprite, copyFonts, copyFavicon, webpConvert, avifConvert, images, localServer),
   watchFiles
 )
 
 export {
-  build, scripts, scriptsMin, sprite, spriteMin, html, htmlMin, pugToHtml, webpConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon
+  build, scripts, scriptsMin, sprite, spriteMin, pugToHtml, webpConvert, avifConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon, updHash
 }

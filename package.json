@@ -27,6 +27,7 @@
     "eslint": "^7.4.0",
     "eslint-config-htmlacademy": "^0.4.2",
     "gulp": "4.0.x",
+    "gulp-avif": "^1.1.1",
     "gulp-cached": "^1.1.1",
     "gulp-changed": "^4.0.2",
     "gulp-clean-css": "^4.3.0",

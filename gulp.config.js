@@ -1,7 +1,6 @@
 const paths = {
   // Source files
   src: {
-    html: `src/html/*.html`,
     pug: `src/pug/pages/*.pug`,
     style: `src/sass/*.scss`,
     js: `src/js/*.js`,
@@ -13,7 +12,6 @@ const paths = {
   },
   // Result files
   build: {
-    html: `build/`,
     pug: `build/`,
     style: `build/css/`,
     js: `build/js/`,
@@ -24,7 +22,6 @@ const paths = {
   },
   // Watch files
   watch: {
-    html: `src/html/**/*.html`,
     pug: `src/pug/**/*.{pug,js}`,
     style: `src/sass/**/*.scss`,
     js: `src/js/**/*.js`,
@@ -100,4 +97,6 @@ const fileInclude = {
 }
 
 
-export { paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, pugConfig, webpCfg, imageminCfg, fileInclude }
+export {
+  paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, pugConfig, webpCfg, imageminCfg, fileInclude
+}
