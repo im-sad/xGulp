@@ -5,15 +5,15 @@ mixin img(data = {})
 
   if format === 'svg'
     img(
-      src="img/" + path + "/" + name + "." + format,
+    src=`img/${path}/${name}.svg`,
       width= data.width,
       height= data.height
     )&attributes(attributes)
   else
     img(
-      src="img/" + path + "/" + name + "." + format,
-      srcset= "img/" + path + "/" + name + "@2x." + format + " 2x",
-      width= width,
-      height= height,
-      alt= altText
+      src=`img/${path}/${name}.${format}`,
+      srcset= `img/${path}/${name}@2x.${format} 2x`,
+      width= data.width,
+      height= data.height,
+      alt= data.alt ? data.alt : ''
     )&attributes(attributes)

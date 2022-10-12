@@ -2,25 +2,39 @@ mixin picture(data = {})
   - const path = data.path || '';
   - const name = data.name || '';
   - const format = data.format || 'jpg';
-  - const sources = data.source || [];
+  - const sources = data.sources || [];
 
   picture.picture&attributes(attributes)
     each source in sources
+      if source.format !== 'svg'
+        source(
+          type=`image/${ source.format}`,
+          media=`(max-width:${source.media}px)`,
+          srcset=`img/${path}/${source.name}.${source.format}, img/${path}/${source.name}@2x.${source.format} 2x`
+        )
+      else
+        source(
+          type=`image/svg+xml`,
+          media=`(max-width:${source.media}px)`,
+          srcset=`img/${path}/${source.name}.${source.format}`
+        )
+
+    if format !== 'svg'
       source(
-        type="image/" + source.format,
-        media="(max-width:" + source.media + "px)",
-        srcset="img/" + path + "/" + source.name + "." +source.format + ", " + "img/" + path + "/" + source.name + "@2x." + source.format + " 2x"
+        type='image/avif',
+        srcset=`img/${path}/${name}.avif, img/${path}/${name}@2x.avif 2x`
+      )
+      source(
+        type='image/webp',
+        srcset=`img/${path}/${name}.webp, img/${path}/${name}@2x.webp 2x`
       )
 
-    source(
-      type='image/webp',
-      srcset="img/" + path + "/" + name + ".webp" + ", " + "img/" + path + "/" + name + "@2x.webp" + " 2x"
-    )
 
     img(
-      src="img/" + path + "/" + name + "." + format,
-      srcset= "img/" + path + "/" + name + "@2x." + format + " 2x",
+      src=`img/${path}/${name}.${format}`,
+      srcset= format === 'svg' ? false : `img/${path}/${name}@2x.${format} 2x`,
       width= data.width,
       height= data.height,
-      alt= data.alt
+      alt= data.alt || '',
+      class= data.imgClass
     )

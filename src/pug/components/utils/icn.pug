@@ -1,9 +1,8 @@
-mixin icn(name, width, height, title)
+mixin icn(name, width, height)
   svg(
     width=width,
     height=height,
-    aria-hidden="true",
-    title=title,
-    class="icn"
+    aria-hidden='true',
+    class='icn'
   )&attributes(attributes)
     use(xlink:href="#" + name)
