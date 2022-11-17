@@ -14,7 +14,6 @@ import mqpacker from 'css-mqpacker'
 import csscomb from 'gulp-csscomb'
 import sourcemaps from 'gulp-sourcemaps'
 import cleanCSS from 'gulp-clean-css'
-import fileinclude from 'gulp-file-include'
 import webpackStream from 'webpack-stream'
 import changed from 'gulp-changed'
 import imagemin from 'gulp-imagemin'
@@ -28,7 +27,7 @@ import cached from 'gulp-cached'
 import strip  from 'gulp-strip-comments'
 
 import {
-  paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, imageminCfg, fileInclude, pugConfig
+  paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, avifCfg, imageminCfg, pugConfig
 } from './gulp.config'
 const server = browserSync.create()
 const sass = gulpSass(dartSass)
@@ -53,7 +52,7 @@ const localServer = (done) => {
 }
 
 const updHash = () => {
-  gulp.src(paths.src.pug)
+  gulp.src(paths.build.pug)
   .pipe(replace('##hash##', Date.now()))
   .pipe(gulp.dest(paths.build.pug))
 }
@@ -197,7 +196,7 @@ const webpConvert = (done) => {
 
 const avifConvert = (done) => {
   gulp.src(paths.src.img)
-  .pipe(gulpAvif())
+  .pipe(gulpAvif(avifCfg))
   .pipe(gulp.dest(paths.build.img))
 
   done()

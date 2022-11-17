@@ -82,6 +82,11 @@ const webpCfg = {
   method: 6 // 0 (fastest) and 6 (slowest)
 }
 
+const avifCfg = {
+  quality: 80,
+  lossless: false
+}
+
 const imageminCfg = {
   png: {
     optimizationLevel: 4 // optimization level between 0 and 7.
@@ -92,11 +97,7 @@ const imageminCfg = {
   },
 }
 
-const fileInclude = {
-  indent: true
-}
-
 
 export {
-  paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, pugConfig, webpCfg, imageminCfg, fileInclude
+  paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, pugConfig, webpCfg, avifCfg, imageminCfg
 }
