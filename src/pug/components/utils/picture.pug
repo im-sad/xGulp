@@ -36,5 +36,6 @@ mixin picture(data = {})
       width= data.width,
       height= data.height,
       alt= data.alt || '',
-      class= data.imgClass
+      class= data.imgClass,
+      loading=data.lazy ? 'lazy' : false
     )

@@ -11,9 +11,10 @@ mixin img(data = {})
     )&attributes(attributes)
   else
     img(
-      src=`img/${path}/${name}.${format}`,
-      srcset= `img/${path}/${name}@2x.${format} 2x`,
+      src= name ? `img/${path}/${name}.${format}` : '',
+      srcset= name ? `img/${path}/${name}@2x.${format} 2x` : false,
       width= data.width,
       height= data.height,
-      alt= data.alt ? data.alt : ''
+      alt= data.alt ? data.alt : '',
+      loading=data.lazy ? 'lazy' : false
     )&attributes(attributes)
