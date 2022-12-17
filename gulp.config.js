@@ -78,7 +78,7 @@ const pugConfig = {
 
 const webpCfg = {
   preset: `photo`,
-  quality: 60,
+  quality: 70,
   method: 6 // 0 (fastest) and 6 (slowest)
 }
 
@@ -92,7 +92,7 @@ const imageminCfg = {
     optimizationLevel: 4 // optimization level between 0 and 7.
   },
   jpg: {
-    quality: 60, // range 0 (worst) to 100 (perfect)
+    quality: 80, // range 0 (worst) to 100 (perfect)
     progressive: true
   },
 }
