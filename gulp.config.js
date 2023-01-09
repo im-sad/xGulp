@@ -64,14 +64,6 @@ const svgoCfg = {
   ]
 }
 
-const htmlminCfg = {
-  removeComments: true,
-  collapseWhitespace: true,
-  minifyCSS: true,
-  minifyJS: true,
-  removeScriptTypeAttributes: true,
-}
-
 const pugConfig = {
   pretty: true
 }
@@ -99,5 +91,5 @@ const imageminCfg = {
 
 
 export {
-  paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, pugConfig, webpCfg, avifCfg, imageminCfg
+  paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, pugConfig, webpCfg, avifCfg, imageminCfg
 }

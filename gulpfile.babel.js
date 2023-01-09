@@ -1,10 +1,8 @@
 import gulp from 'gulp'
 import del from 'del'
-import rename from 'gulp-rename'
 import notifier from 'node-notifier'
 import browserSync from 'browser-sync'
 import plumber from 'gulp-plumber'
-import htmlmin from 'gulp-htmlmin'
 import postcss from 'gulp-postcss'
 import gulpSass from "gulp-sass"
 import dartSass from "sass"
@@ -19,7 +17,6 @@ import changed from 'gulp-changed'
 import imagemin from 'gulp-imagemin'
 import svgstore from 'gulp-svgstore'
 import webp from 'gulp-webp'
-import gulpAvif from 'gulp-avif'
 import env from 'gulp-env'
 import replace from 'gulp-replace'
 import pug from 'gulp-pug'
@@ -27,7 +24,7 @@ import cached from 'gulp-cached'
 import strip  from 'gulp-strip-comments'
 
 import {
-  paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, htmlminCfg, webpCfg, avifCfg, imageminCfg, pugConfig
+  paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, webpCfg, imageminCfg, avifCfg, pugConfig
 } from './gulp.config'
 const server = browserSync.create()
 const sass = gulpSass(dartSass)
@@ -81,7 +78,6 @@ const pugToHtml = (done) => {
   .pipe(replace('##hash##', Date.now()))
   .pipe(gulp.dest(paths.build.pug))
 
-  updHash()
 
   done()
 }
@@ -107,7 +103,6 @@ const styles = (done) => {
   .pipe(gulp.dest(paths.build.style))
   .pipe(server.stream())
 
-  updHash()
 
   done()
 }
@@ -127,11 +122,9 @@ const stylesMin = (done) => {
   .pipe(gulp.dest(paths.build.style))
 
   .pipe(cleanCSS({level: 2})) // 1 or 2
-  .pipe(rename({suffix: `.min`}))
+  // .pipe(rename({suffix: `.min`}))
   .pipe(gulp.dest(paths.build.style))
   .pipe(server.stream())
-
-  updHash()
 
   done()
 }
@@ -252,7 +245,6 @@ const changeVersionToMin = (done) => {
 
 // Watch files
 const watchFiles = (done) => {
-  // gulp.watch(paths.watch.html, gulp.series(html, reloadServer))
   gulp.watch(paths.watch.pug, gulp.series(pugToHtml, reloadServer))
   gulp.watch(paths.watch.style, styles)
   gulp.watch(paths.watch.js, gulp.series(scripts, reloadServer))
@@ -266,17 +258,21 @@ const watchFiles = (done) => {
 }
 
 // Compile
+const buildAssets = gulp.series(
+  gulp.parallel(stylesMin, scriptsMin)
+)
+
 const build = gulp.series(
   clean,
-  gulp.parallel(pugToHtml, stylesMin, scriptsMin, spriteMin, copyFonts, copyFavicon, webpConvert, avifConvert, svgMin, imagesMin)
+  gulp.parallel(pugToHtml, stylesMin, scriptsMin, spriteMin, copyFonts, copyFavicon, webpConvert, svgMin, imagesMin)
 )
 
 export default gulp.series(
   clean,
-  gulp.parallel(pugToHtml, styles, scripts, sprite, copyFonts, copyFavicon, webpConvert, avifConvert, images, localServer),
+  gulp.parallel(pugToHtml, styles, scripts, spriteMin, copyFonts, copyFavicon, webpConvert, imagesMin, localServer),
   watchFiles
 )
 
 export {
-  build, scripts, scriptsMin, sprite, spriteMin, pugToHtml, webpConvert, avifConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon, updHash
+  build, buildAssets, styles, stylesMin, scripts, scriptsMin, sprite, spriteMin, pugToHtml, webpConvert, avifConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon, updHash
 }
