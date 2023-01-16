@@ -4,7 +4,6 @@
   "private": true,
   "browserslist": [
     "last 2 versions",
-    "IE 11",
     "Firefox ESR",
     "not dead"
   ],
@@ -33,7 +32,6 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-csscomb": "^3.1.0",
     "gulp-env": "^0.4.0",
-    "gulp-file-include": "^2.2.2",
     "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^7.1.0",
     "gulp-notify": "^3.2.0",
@@ -49,7 +47,6 @@
     "gulp-svgstore": "^7.0.1",
     "gulp-uglify": "^3.0.2",
     "gulp-webp": "^4.0.1",
-    "husky": "^4.2.5",
     "node-notifier": "^10.0.1",
     "normalize.css": "^8.0.1",
     "path": "^0.12.7",
@@ -61,10 +58,5 @@
   },
   "engines": {
     "node": "v16.14.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm test"
-    }
   }
 }
