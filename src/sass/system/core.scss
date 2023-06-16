@@ -1,3 +1,11 @@
+:root {
+  --scale-vw: calc(var(1920) / 100);
+
+  @include media(tablet) {
+    --scale-vw: calc(var(768) / 100);
+  }
+}
+
 body {
   background-color: $bg;
 }

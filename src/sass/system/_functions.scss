@@ -5,3 +5,7 @@
 @function vh($vh-nums) {
   @return calc(#{$vh-nums} * var(--vh, 1vh));
 }
+
+@function size($size) {
+  @return #{calc(#{$size} / var(--scale-vw) * var(--vw, 1vw))};
+}
