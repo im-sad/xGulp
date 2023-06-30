@@ -6,8 +6,13 @@
   }
 }
 
+html {
+  overscroll-behavior: none;
+}
+
 body {
   background-color: $bg;
+  // scrollbar-gutter: stable;
 }
 
 a {

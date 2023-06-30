@@ -51,6 +51,7 @@
 @mixin hide-scroll {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  overscroll-behavior: contain;
 
   &::-webkit-scrollbar {
     display: none;
@@ -198,6 +199,12 @@
 
   @else if $media == hover {
     @media (hover: hover), screen and (min-width: 0\0) {
+      @content;
+    }
+  }
+
+  @else if $media == animation {
+    @media (prefers-reduced-motion: no-preference) {
       @content;
     }
   }

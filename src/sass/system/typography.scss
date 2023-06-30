@@ -1,0 +1,10 @@
+// Titles
+@mixin titleH1 {
+  @include font-size(34px);
+  font-weight: 700;
+}
+
+// Text
+@mixin textBase {
+  @include font-size(14px, 18px);
+}
