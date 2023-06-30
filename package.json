@@ -1,6 +1,6 @@
 {
   "name": "x_gulp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "browserslist": [
     "last 2 versions",
@@ -46,17 +46,18 @@
     "gulp-strip-comments": "^2.5.2",
     "gulp-svgstore": "^7.0.1",
     "gulp-uglify": "^3.0.2",
-    "gulp-webp": "^4.0.1",
+    "imagemin-webp": "^6.0.0",
     "node-notifier": "^10.0.1",
     "normalize.css": "^8.0.1",
     "path": "^0.12.7",
     "sass": "^1.49.9",
     "stylelint": "9.10.x",
     "stylelint-config-htmlacademy": "0.1.x",
-    "webpack": "^4.43.0",
-    "webpack-stream": "5.2.1"
+    "ts-loader": "^9.4.3",
+    "webpack": "^5.75.0",
+    "webpack-stream": "^7.0.0"
   },
   "engines": {
-    "node": "v16.19.1"
+    "node": ">=16"
   }
 }

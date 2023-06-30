@@ -3,8 +3,9 @@ const paths = {
   src: {
     pug: `src/pug/pages/*.pug`,
     style: `src/sass/*.scss`,
-    js: `src/js/*.js`,
+    js: `src/js/*.{js,ts}`,
     img: [`src/img/**/*.{jpg,png,svg}`, `!src/img/sprite/**/*`],
+    imgWebp: [`src/img/**/*.{jpg,png}`, `!src/img/sprite/**/*`],
     svg: [`src/img/**/*.svg`, `!src/img/sprite/**/*`],
     spriteIcns: `src/img/sprite/*.svg`,
     fonts: `src/fonts/**/*.*`,
@@ -24,8 +25,9 @@ const paths = {
   watch: {
     pug: `src/pug/**/*.{pug,js}`,
     style: `src/sass/**/*.scss`,
-    js: `src/js/**/*.js`,
+    js: `src/js/**/*.{js,ts}`,
     img: [`src/img/**/*.{png,jpg,svg}`, `!src/img/sprite/**/*`],
+    imgWebp: [`src/img/**/*.{png,jpg}`, `!src/img/sprite/**/*`],
     svg: [`src/img/**/*.svg`, `!src/img/sprite/**/*`],
     spriteIcns: `src/img/sprite/*.{svg}`,
     fonts: `src/fonts/**/*.*`,

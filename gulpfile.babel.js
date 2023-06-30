@@ -15,13 +15,14 @@ import cleanCSS from 'gulp-clean-css'
 import webpackStream from 'webpack-stream'
 import changed from 'gulp-changed'
 import imagemin from 'gulp-imagemin'
+import imageminWebp from 'imagemin-webp'
 import svgstore from 'gulp-svgstore'
-import webp from 'gulp-webp'
 import env from 'gulp-env'
 import replace from 'gulp-replace'
 import pug from 'gulp-pug'
 import cached from 'gulp-cached'
 import strip  from 'gulp-strip-comments'
+import rename from 'gulp-rename'
 
 import {
   paths, autoprefixerCfg, sassCfg, serverCfg, svgoCfg, webpCfg, imageminCfg, avifCfg, pugConfig
@@ -180,8 +181,11 @@ const imagesMin = (done) => {
 }
 
 const webpConvert = (done) => {
-  gulp.src(paths.src.img)
-  .pipe(webp(webpCfg))
+  gulp.src(paths.src.imgWebp)
+  .pipe(imagemin([
+    imageminWebp(),
+  ]))
+  .pipe(rename({ extname: '.webp' }))
   .pipe(gulp.dest(paths.build.img))
 
   done()

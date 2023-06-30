@@ -6,8 +6,8 @@ module.exports = {
   mode: process.env.NODE_ENV || `development`, // development or production
   devtool: process.env.NODE_ENV == `development` ? 'eval' : false, // https://webpack.js.org/configuration/devtool/
   entry: {
-    main: `./js/main.js`,
-    libs: `./js/libs.js`,
+    main: `./js/main.ts`,
+    libs: `./js/libs.ts`,
   },
   output: {
     filename: process.env.NODE_ENV === `production` ? `[name].min.js` : `[name].js`,
@@ -21,13 +21,19 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: {
-          loader: `babel-loader`,
-          options: {
-            presets: [`@babel/preset-env`],
-          },
+        loader: `babel-loader`,
+        options: {
+          presets: [`@babel/preset-env`],
         },
       },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
   },
 };

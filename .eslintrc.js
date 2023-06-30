@@ -4,6 +4,7 @@ module.exports = {
     'no-console': 1,
     'quotes': ['error', 'single', {allowTemplateLiterals: true}],
     'no-unused-expressions': ['error', {allowTernary: true}],
+    'space-before-function-paren': ['error', 'never'],
   },
   root: true,
   globals: {

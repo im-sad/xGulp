@@ -6,30 +6,30 @@ const setScrollWidth = () => {
 };
 
 function getScrollbarWidth() {
-  const outer = document.createElement("div");
+  const outer = document.createElement('div');
 
-  outer.style.visibility = "hidden";
-  outer.style.width = "100px";
-  outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+  outer.style.visibility = 'hidden';
+  outer.style.width = '100px';
+  outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
 
   document.body.appendChild(outer);
 
   const widthNoScroll = outer.offsetWidth;
-  outer.style.overflow = "scroll";
+  outer.style.overflow = 'scroll';
 
   // add innerdiv
-  const inner = document.createElement("div");
-  inner.style.width = "100%";
+  const inner = document.createElement('div');
+  inner.style.width = '100%';
   outer.appendChild(inner);
 
   const widthWithScroll = inner.offsetWidth;
 
   // remove divs
-  outer.parentNode.removeChild(outer);
+  if (outer.parentNode) {
+    outer.parentNode.removeChild(outer);
+  }
 
   return widthNoScroll - widthWithScroll;
 }
-
-
 
 export {setScrollWidth}
