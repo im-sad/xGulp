@@ -3,8 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-height: calc(100 * var(--vh, 1vh));
-
+  min-height: vh-calc(100);
 
   &__core {
     width: 100%;

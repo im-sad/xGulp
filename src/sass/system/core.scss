@@ -1,8 +1,12 @@
 :root {
-  --scale-vw: calc(var(1920) / 100);
+  --scale-vw: calc(1920 / 100);
+
+  @each $name, $color in $colors {
+    --color-#{$name}: #{$color};
+  }
 
   @include media(tablet) {
-    --scale-vw: calc(var(768) / 100);
+    --scale-vw: calc(768 / 100);
   }
 }
 
@@ -17,10 +21,10 @@ body {
 
 a {
   text-underline-offset: 0.2em;
-  color: $color-link;
+  color: color(link);
 
   &:hover {
-    color: $color-link-hover;
+    color: color(link-hover);
   }
 }
 

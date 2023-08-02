@@ -1,11 +1,21 @@
 @use 'sass:math';
+@import 'vars';
 
 @function unit-from($all-width, $el-width, $unit: '%') {
   @return #{calc($el-width / ($all-width / 100))}#{$unit};
 }
 
-@function vh($vh-nums) {
+// https://www.kevinpowell.co/article/using-my-colors/
+@function color($name) {
+  @return map-get($colors, $name);
+}
+
+@function vh-calc($vh-nums) {
   @return calc(#{$vh-nums} * var(--vh, 1vh));
+}
+
+@function vh($vh-nums) {
+  @return #{$vh-nums #{'*'} var(--vh, 1vh)};
 }
 
 @function size($size) {

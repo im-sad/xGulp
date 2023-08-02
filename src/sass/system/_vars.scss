@@ -5,17 +5,15 @@ $url-img: '../img/bg';
 $url-font: '../fonts';
 
 // Colors
-$color-white: #fff;
-$color-black: #000;
-
-$color-main: #f5da5a;
-$color-accent: #5983d5;
-$color-muted: lighten($color-main, 20%);
-$color-border: #ccc;
-
-$color-link: red;
-$color-link-hover: blue;
-
+$colors: (
+  'white': #fff,
+  'black': #000,
+  'main': #f5da5a,
+  'accent': #5983d5,
+  'muted': lighten(#f5da5a, 20%),
+  'link': red,
+  'link-hover': blue,
+);
 
 // Safe font-family
 $font-Arial: 'Arial', 'Helvetica CY', 'Nimbus Sans L', sans-serif;
