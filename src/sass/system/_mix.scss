@@ -1,6 +1,10 @@
 @mixin font-size($size, $lineHeight: $size) {
   font-size: $size;
-  line-height: calc($lineHeight / $size);
+  @if $lineHeight == 0 {
+    line-height: 1;
+  } @else {
+    line-height: calc($lineHeight / $size);
+  }
 }
 
 @mixin flex-width($width) {
