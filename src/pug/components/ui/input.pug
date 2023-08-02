@@ -1,15 +1,27 @@
-mixin input(options = {})
-  - const inputLabel = options.inputLabel ? options.inputLabel : false
-  - const placeholder = options.placeholder ? options.placeholder : false
-  - const inputError = options.inputError ? options.inputError : false
-  - const inputType = options.inputType ? options.inputType : "text"
-  - const inputId = options.inputId ? options.inputId : false
-  - const inputName = options.inputName ? options.inputName : false
-  - const inputValue = options.inputValue ? options.inputValue : false
-  - const inputMinLength = options.inputMinLength ? options.inputMinLength : false
-  - const inputMaxLength = options.inputMaxLength ? options.inputMaxLength : false
-  - const variant = options.variant ? `input-${options.variant}` : false
-  - const size = options.size ? `input--size-${options.size}` : false
+mixin input(props = {})
+  -
+    const inputLabel = props.inputLabel ? props.inputLabel : false
+    const placeholder = props.placeholder ? props.placeholder : false
+    const inputError = props.inputError ? props.inputError : false
+    const inputType = props.inputType ? props.inputType : "text"
+    const inputId = props.inputId ? props.inputId : false
+    const inputName = props.inputName ? props.inputName : false
+    const inputValue = props.inputValue ? props.inputValue : false
+    const inputMinLength = props.inputMinLength ? props.inputMinLength : false
+    const inputMaxLength = props.inputMaxLength ? props.inputMaxLength : false
+    const variant = props.variant ? `input-${props.variant}` : false
+    const size = props.size ? `input--size-${props.size}` : false
 
 
-  input(type=inputType, id=inputId, name=inputName, value=inputValue, minlength=inputMinLength, maxlength=inputMaxLength, placeholder=placeholder, class="input", class=variant, class=size)&attributes(attributes)
+  input(
+    type=inputType,
+    id=inputId,
+    name=inputName,
+    value=inputValue,
+    minlength=inputMinLength,
+    maxlength=inputMaxLength,
+    placeholder=placeholder,
+    class="input",
+    class=variant,
+    class=size
+  )&attributes(attributes)

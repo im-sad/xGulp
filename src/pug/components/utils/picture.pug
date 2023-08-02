@@ -1,8 +1,9 @@
-mixin picture(data = {})
-  - const path = data.path || '';
-  - const name = data.name || '';
-  - const format = data.format || 'jpg';
-  - const sources = data.sources || [];
+mixin picture(props = {})
+  -
+    const path = props.path || ''
+    const name = props.name || ''
+    const format = props.format || 'jpg'
+    const sources = props.sources || []
 
   picture.picture&attributes(attributes)
     each source in sources
@@ -33,9 +34,9 @@ mixin picture(data = {})
     img(
       src=`img/${path}/${name}.${format}`,
       srcset= format === 'svg' ? false : `img/${path}/${name}@2x.${format} 2x`,
-      width= data.width,
-      height= data.height,
-      alt= data.alt || '',
-      class= data.imgClass,
-      loading=data.lazy ? 'lazy' : false
+      width= props.width,
+      height= props.height,
+      alt= props.alt || '',
+      class= props.imgClass,
+      loading=props.lazy ? 'lazy' : false
     )

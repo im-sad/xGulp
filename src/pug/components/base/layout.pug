@@ -1,12 +1,20 @@
 doctype html
 
+-
+  let hasHeader = true
+  let hasFooter = true
+  let pageMods = ''
+  let headerMods = ''
+  let footerMods = ''
+  let currentUrl = ''
+
 include ../components
 
 block variables
 
 html(lang="ru")
   head
-    title= title
+    title= `XGulp - ${title}`
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
@@ -22,7 +30,7 @@ html(lang="ru")
     noscript
       .noscript Для полноценной работы сайта, необходимо включить JavaScript!
 
-    +preloader()
+    //- +preloader()
     +sprite()
     .page(class=pageMods)
       .page__core

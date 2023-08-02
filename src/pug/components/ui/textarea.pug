@@ -1,14 +1,15 @@
-mixin textarea(options = {})
-  - const inputLabel = options.inputLabel ? options.inputLabel : false
-  - const placeholder = options.placeholder ? options.placeholder : false
-  - const inputError = options.inputError ? options.inputError : false
-  - const inputId = options.inputId ? options.inputId : false
-  - const inputName = options.inputName ? options.inputName : false
-  - const inputValue = options.inputValue ? options.inputValue : ''
-  - const inputMinLength = options.inputMinLength ? options.inputMinLength : false
-  - const inputMaxLength = options.inputMaxLength ? options.inputMaxLength : false
-  - const variant = options.variant ? `textarea-${options.variant}` : false
-  - const size = options.size ? `textarea--size-${options.size}` : false
+mixin textarea(props = {})
+  -
+    const inputLabel = props.inputLabel ? props.inputLabel : false
+    const placeholder = props.placeholder ? props.placeholder : false
+    const inputError = props.inputError ? props.inputError : false
+    const inputId = props.inputId ? props.inputId : false
+    const inputName = props.inputName ? props.inputName : false
+    const inputValue = props.inputValue ? props.inputValue : ''
+    const inputMinLength = props.inputMinLength ? props.inputMinLength : false
+    const inputMaxLength = props.inputMaxLength ? props.inputMaxLength : false
+    const variant = props.variant ? `textarea-${props.variant}` : false
+    const size = props.size ? `textarea--size-${props.size}` : false
 
   textarea(
     type=inputType,

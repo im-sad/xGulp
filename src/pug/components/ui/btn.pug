@@ -1,14 +1,14 @@
-mixin btn(options = {})
+mixin btn(props = {})
+  -
+    const tag = props.href ? 'a' : 'button';
+    const href = props.href || false;
+    const target = props.isExternal ? '_blank' : false;
+    const rel = props.isExternal ? 'nofollow noopener noreferrer' : false;
+    const type = props.type || tag === 'button' ? props.type || 'button' : false;
 
-  - const tag = options.href ? 'a' : 'button';
-  - const href = options.href || false;
-  - const target = options.isExternal ? '_blank' : false;
-  - const rel = options.isExternal ? 'nofollow noopener noreferrer' : false;
-  - const type = options.type || tag === 'button' ? options.type || 'button' : false;
-
-  - const size = options.size ? options.variant ? `btn-${options.variant}--size-${options.size}` : `btn--size-${options.size}` : false;
-  - const variant = options.variant ? `btn-${options.variant}` : false;
-  - const mod = options.mod ? `btn--${options.mod}` : false;
+    const size = props.size ? props.variant ? `btn-${props.variant}--size-${props.size}` : `btn--size-${props.size}` : false;
+    const variant = props.variant ? `btn-${props.variant}` : false;
+    const mod = props.mod ? `btn--${props.mod}` : false;
 
 
   #{tag}.btn(

@@ -1,10 +1,10 @@
-mixin modal(options = {})
+mixin modal(props = {})
 
   .modal.modal--preload&attributes(attributes)
     .modal__wrapper
       .modal__overlay(data-close-modal)
       .modal__content
-        if options.close
+        if props.close
           button.modal__close.btn.btn-transparent(data-close-modal, aria-label="Закрыть", type="button")
             +icn('icn-close', 48, 48).modal__close-icn
         .modal__content-in

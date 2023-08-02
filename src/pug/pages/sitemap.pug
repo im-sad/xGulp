@@ -1,22 +1,22 @@
 extends ../components/base/layout
 
 block variables
-  - const title = "Список страниц"
   -
+    title = 'Список страниц'
     const pages = [
       {
-        name: "UI-kit — ui-kit.html",
-        src: "ui-kit.html"
+        name: 'UI-kit',
+        src: 'ui-kit'
       },
       {
-        name: "Главная — index.html",
-        src: "index.html"
+        name: 'Главная',
+        src: 'index'
       },
       {
-        name: "Ошибка — 404.html",
-        src: "404.html"
+        name: 'Ошибка ',
+        src: '404'
       },
-    ];
+    ]
 
 block main
   style.
@@ -71,4 +71,4 @@ block main
       ol
         each page in pages
           li
-            a(href= page.src)= page.name
+            a(href=`${page.src}.html`)= `${page.name} - ${page.src}.html`
