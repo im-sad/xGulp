@@ -5,6 +5,7 @@ module.exports = {
     'quotes': ['error', 'single', {allowTemplateLiterals: true}],
     'no-unused-expressions': ['error', {allowTernary: true}],
     'space-before-function-paren': ['error', 'never'],
+    'semi': ['error', 'never'],
   },
   root: true,
   globals: {
@@ -19,5 +20,4 @@ module.exports = {
     browser: true,
     commonjs: true
   }
-};
-
+}

@@ -4,14 +4,15 @@ import notifier from 'node-notifier'
 import browserSync from 'browser-sync'
 import plumber from 'gulp-plumber'
 import postcss from 'gulp-postcss'
-import gulpSass from "gulp-sass"
-import dartSass from "sass"
+import gulpSass from 'gulp-sass'
+import dartSass from 'sass'
 import sassGlob from 'gulp-sass-glob'
 import autoprefixer from 'autoprefixer'
 import mqpacker from 'css-mqpacker'
 import csscomb from 'gulp-csscomb'
 import sourcemaps from 'gulp-sourcemaps'
 import cleanCSS from 'gulp-clean-css'
+import webpack from 'webpack'
 import webpackStream from 'webpack-stream'
 import changed from 'gulp-changed'
 import imagemin from 'gulp-imagemin'
@@ -29,7 +30,7 @@ import {
 } from './gulp.config'
 const server = browserSync.create()
 const sass = gulpSass(dartSass)
-
+const {watch, parallel, series, lastRun} = gulp
 
 const clean = (done) => {
   del.sync(paths.clean)
@@ -138,7 +139,7 @@ const scripts = (done) => {
 
   gulp.src(paths.src.js)
   .pipe(plumber())
-  .pipe(webpackStream( require(`./webpack.config.js`) ))
+  .pipe(webpackStream(require(`./webpack.config.js`), webpack, function(err, stats) {}))
   .pipe(gulp.dest(paths.build.js))
 
   done()
@@ -151,7 +152,7 @@ const scriptsMin = (done) => {
 
   gulp.src(paths.src.js)
   .pipe(plumber())
-  .pipe(webpackStream( require(`./webpack.config.js`) ))
+  .pipe(webpackStream(require(`./webpack.config.js`), compiler, function(err, stats) {}))
   .pipe(strip())
   .pipe(gulp.dest(paths.build.js))
 
@@ -161,7 +162,7 @@ const scriptsMin = (done) => {
 
 // Graphic
 const images = (done) => {
-  gulp.src(paths.src.img)
+  gulp.src(paths.src.img, { since: lastRun(images) })
   .pipe(changed(paths.build.img))
   .pipe(gulp.dest(paths.build.img))
 
@@ -169,7 +170,7 @@ const images = (done) => {
 }
 
 const imagesMin = (done) => {
-  gulp.src(paths.src.img)
+  gulp.src(paths.src.img, { since: lastRun(imagesMin) })
   .pipe(changed(paths.build.img))
   .pipe(imagemin([
     imagemin.optipng(imageminCfg.png),
@@ -180,10 +181,10 @@ const imagesMin = (done) => {
   done()
 }
 
-const webpConvert = (done) => {
-  gulp.src(paths.src.imgWebp)
+const webp = (done) => {
+  gulp.src(paths.src.imgWebp, { since: lastRun(webp) })
   .pipe(imagemin([
-    imageminWebp(),
+    imageminWebp(webpCfg),
   ]))
   .pipe(rename({ extname: '.webp' }))
   .pipe(gulp.dest(paths.build.img))
@@ -192,7 +193,7 @@ const webpConvert = (done) => {
 }
 
 const avifConvert = (done) => {
-  gulp.src(paths.src.img)
+  gulp.src(paths.src.img, { since: lastRun(avifConvert) })
   .pipe(gulpAvif(avifCfg))
   .pipe(gulp.dest(paths.build.img))
 
@@ -200,7 +201,7 @@ const avifConvert = (done) => {
 }
 
 const svg = (done) => {
-  gulp.src(paths.src.svg)
+  gulp.src(paths.src.svg, { since: lastRun(svg) })
   .pipe(gulp.dest(paths.build.img))
 
   done()
@@ -249,34 +250,34 @@ const changeVersionToMin = (done) => {
 
 // Watch files
 const watchFiles = (done) => {
-  gulp.watch(paths.watch.pug, gulp.series(pugToHtml, reloadServer))
-  gulp.watch(paths.watch.style, styles)
-  gulp.watch(paths.watch.js, gulp.series(scripts, reloadServer))
-  gulp.watch(paths.watch.fonts, gulp.series(copyFonts, reloadServer))
-  gulp.watch(paths.watch.favicon, gulp.series(copyFavicon, reloadServer))
-  gulp.watch(paths.watch.spriteIcns, gulp.series(sprite, reloadServer))
-  gulp.watch(paths.watch.svg, gulp.series(svg, reloadServer))
-  gulp.watch(paths.watch.img, gulp.series(gulp.parallel(webpConvert, images), reloadServer))
+  watch(paths.watch.pug, series(pugToHtml, reloadServer))
+  watch(paths.watch.style, styles)
+  watch(paths.watch.js, series(scripts, reloadServer))
+  watch(paths.watch.fonts, series(copyFonts, reloadServer))
+  watch(paths.watch.favicon, series(copyFavicon, reloadServer))
+  watch(paths.watch.spriteIcns, series(sprite, reloadServer))
+  watch(paths.watch.svg, series(svg, reloadServer))
+  watch(paths.watch.img, series(parallel(webp, images), reloadServer))
 
   done()
 }
 
 // Compile
-const buildAssets = gulp.series(
-  gulp.parallel(stylesMin, scriptsMin)
+const buildAssets = series(
+  parallel(stylesMin, scriptsMin)
 )
 
-const build = gulp.series(
+const build = series(
   clean,
-  gulp.parallel(pugToHtml, stylesMin, scriptsMin, spriteMin, copyFonts, copyFavicon, webpConvert, svgMin, imagesMin)
+  parallel(pugToHtml, stylesMin, scriptsMin, spriteMin, copyFonts, copyFavicon, webp, svgMin, imagesMin)
 )
 
-export default gulp.series(
+export default series(
   clean,
-  gulp.parallel(pugToHtml, styles, scripts, spriteMin, copyFonts, copyFavicon, webpConvert, imagesMin, localServer),
+  parallel(pugToHtml, styles, scripts, spriteMin, copyFonts, copyFavicon, webp, imagesMin, localServer),
   watchFiles
 )
 
 export {
-  build, buildAssets, styles, stylesMin, scripts, scriptsMin, sprite, spriteMin, pugToHtml, webpConvert, avifConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon, updHash
+  build, buildAssets, styles, stylesMin, scripts, scriptsMin, sprite, spriteMin, pugToHtml, webp, avifConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon, updHash
 }

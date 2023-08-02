@@ -1,3 +1,4 @@
 build/*.js
+gulpfile.config.js
 gulpfile.babel.js
 webpack.config.js

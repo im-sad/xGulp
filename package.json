@@ -54,7 +54,7 @@
     "stylelint": "9.10.x",
     "stylelint-config-htmlacademy": "0.1.x",
     "ts-loader": "^9.4.3",
-    "webpack": "^5.75.0",
+    "webpack": "^5.88.2",
     "webpack-stream": "^7.0.0"
   },
   "engines": {
