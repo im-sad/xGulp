@@ -189,7 +189,7 @@
     }
   }
 
-  @else if $media == end {
+  @else if $media == last {
     @media only screen and (max-width: calc($media-end - 1px)) {
       @content;
     }
