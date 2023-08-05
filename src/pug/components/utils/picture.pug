@@ -21,10 +21,10 @@ mixin picture(props = {})
         )
 
     if format !== 'svg'
-      source(
-        type='image/avif',
-        srcset=`img/${path}/${name}.avif, img/${path}/${name}@2x.avif 2x`
-      )
+      //- source(
+      //-   type='image/avif',
+      //-   srcset=`img/${path}/${name}.avif, img/${path}/${name}@2x.avif 2x`
+      //- )
       source(
         type='image/webp',
         srcset=`img/${path}/${name}.webp, img/${path}/${name}@2x.webp 2x`
