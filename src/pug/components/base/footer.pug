@@ -1,5 +1,5 @@
-mixin footer(footerMods)
+mixin footer(props = {})
 
-  footer.footer(class=footerMods)
+  footer.footer(class=props.mod)
     .width
       .footer__core FOOTER

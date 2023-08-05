@@ -35,12 +35,17 @@ html(lang="ru")
     .page(class=pageMods)
       .page__core
         if (hasHeader)
-          +header(headerMods, currentUrl)
+          +header({
+            mod: headerMods,
+            currentUrl: currentUrl
+          })
 
         block main
 
       if (hasFooter)
-        +footer(footerMods)
+        +footer({
+          mod: footerMods
+        })
 
 
     block modals

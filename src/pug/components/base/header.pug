@@ -1,5 +1,12 @@
-mixin header(headerMods, currentUrl)
+mixin header(props = {})
+  -
+    const current = props.currentUrl
 
   header.header(class=headerMods)
     .width
-      .header__core HEADER
+      .header__core
+        each items in dataMenu
+          a(
+            href=item.href
+            class=item.href === current && 'is-active'
+          )!=item.title
