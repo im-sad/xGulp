@@ -10,6 +10,11 @@
   @return map-get($colors, $name);
 }
 
+// line-height coefficient
+@function lh($font-size, $lineHeight) {
+  @return calc($lineHeight / $font-size);
+}
+
 @function vh-calc($vh-nums) {
   @return calc(#{$vh-nums} * var(--vh, 1vh));
 }
