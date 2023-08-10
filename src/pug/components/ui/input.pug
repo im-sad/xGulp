@@ -3,7 +3,7 @@ mixin input(props = {})
     const inputLabel = props.inputLabel ? props.inputLabel : false
     const placeholder = props.placeholder ? props.placeholder : false
     const inputError = props.inputError ? props.inputError : false
-    const inputType = props.inputType ? props.inputType : "text"
+    const inputType = props.inputType ? props.inputType : 'text'
     const inputId = props.inputId ? props.inputId : false
     const inputName = props.inputName ? props.inputName : false
     const inputValue = props.inputValue ? props.inputValue : false
@@ -14,14 +14,14 @@ mixin input(props = {})
 
 
   input(
-    type=inputType,
-    id=inputId,
-    name=inputName,
-    value=inputValue,
-    minlength=inputMinLength,
-    maxlength=inputMaxLength,
-    placeholder=placeholder,
-    class="input",
-    class=variant,
+    type=inputType
+    id=inputId
+    name=inputName
+    value=inputValue
+    minlength=inputMinLength
+    maxlength=inputMaxLength
+    placeholder=placeholder
+    class="input"
+    class=variant
     class=size
   )&attributes(attributes)

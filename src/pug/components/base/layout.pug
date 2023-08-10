@@ -16,14 +16,14 @@ html(lang="ru")
   head
     title= `XGulp - ${title}`
     meta(charset="utf-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    meta(name="description", content="")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible" content="ie=edge")
+    meta(name="description" content="")
     //- генерируйте favicon тут - https://realfavicongenerator.net/
     //- в подключение фавикон манифеста обязательно добавьте строчки crossorigin="use-credentials"
 
     //- link(rel="preload", href="fonts/roboto/Roboto-Regular.woff2", as="font", crossorigin="anonymous")
-    link(rel="stylesheet", href="css/style.css?##hash##")
+    link(rel="stylesheet" href="css/style.css?##hash##")
 
 
   body(class=bodyMods)
@@ -36,7 +36,7 @@ html(lang="ru")
       .page__core
         if (hasHeader)
           +header({
-            mod: headerMods,
+            mod: headerMods
             currentUrl: currentUrl
           })
 
@@ -50,5 +50,5 @@ html(lang="ru")
 
     block modals
 
-    script(src="js/libs.js?##hash##")
+    script(src="js/libs.js?##hash##" defer)
     script(src="js/main.js?##hash##")

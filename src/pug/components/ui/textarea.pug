@@ -12,14 +12,14 @@ mixin textarea(props = {})
     const size = props.size ? `textarea--size-${props.size}` : false
 
   textarea(
-    type=inputType,
-    id=inputId,
-    name=inputName,
-    minlength=inputMinLength,
-    maxlength=inputMaxLength,
-    placeholder=placeholder,
-    class="textarea",
-    class=variant,
+    type=inputType
+    id=inputId
+    name=inputName
+    minlength=inputMinLength
+    maxlength=inputMaxLength
+    placeholder=placeholder
+    class="textarea"
+    class=variant
     class=size
   )&attributes(attributes)
     =inputValue

@@ -6,16 +6,16 @@ mixin img(props = {})
 
   if format === 'svg'
     img(
-    src=`img/${path}/${name}.svg`,
-      width= props.width,
+      src=`img/${path}/${name}.svg`
+      width= props.width
       height= props.height
     )&attributes(attributes)
   else
     img(
-      src= name ? `img/${path}/${name}.${format}` : '',
-      srcset= name ? `img/${path}/${name}@2x.${format} 2x` : false,
-      width= props.width,
-      height= props.height,
-      alt= props.alt ? props.alt : '',
+      src= name ? `img/${path}/${name}.${format}` : ''
+      srcset= name ? `img/${path}/${name}@2x.${format} 2x` : false
+      width= props.width
+      height= props.height
+      alt= props.alt ? props.alt : ''
       loading=props.lazy ? 'lazy' : false
     )&attributes(attributes)

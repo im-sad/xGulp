@@ -9,34 +9,34 @@ mixin picture(props = {})
     each source in sources
       if source.format !== 'svg'
         source(
-          type=`image/${ source.format}`,
-          media=`(max-width:${source.media}px)`,
-          srcset=`img/${path}/${source.name}.${source.format}, img/${path}/${source.name}@2x.${source.format} 2x`
+          type=`image/${ source.format}`
+          media=`(max-width:${source.media}px)`
+          srcset=`img/${path}/${source.name}.${source.format} img/${path}/${source.name}@2x.${source.format} 2x`
         )
       else
         source(
-          type=`image/svg+xml`,
-          media=`(max-width:${source.media}px)`,
+          type=`image/svg+xml`
+          media=`(max-width:${source.media}px)`
           srcset=`img/${path}/${source.name}.${source.format}`
         )
 
     if format !== 'svg'
       //- source(
-      //-   type='image/avif',
-      //-   srcset=`img/${path}/${name}.avif, img/${path}/${name}@2x.avif 2x`
+      //-   type='image/avif'
+      //-   srcset=`img/${path}/${name}.avif img/${path}/${name}@2x.avif 2x`
       //- )
       source(
-        type='image/webp',
-        srcset=`img/${path}/${name}.webp, img/${path}/${name}@2x.webp 2x`
+        type='image/webp'
+        srcset=`img/${path}/${name}.webp img/${path}/${name}@2x.webp 2x`
       )
 
 
     img(
-      src=`img/${path}/${name}.${format}`,
-      srcset= format === 'svg' ? false : `img/${path}/${name}@2x.${format} 2x`,
-      width= props.width,
-      height= props.height,
-      alt= props.alt || '',
-      class= props.imgClass,
+      src=`img/${path}/${name}.${format}`
+      srcset= format === 'svg' ? false : `img/${path}/${name}@2x.${format} 2x`
+      width= props.width
+      height= props.height
+      alt= props.alt || ''
+      class= props.imgClass
       loading=props.lazy ? 'lazy' : false
     )

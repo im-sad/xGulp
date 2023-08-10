@@ -5,7 +5,11 @@ mixin modal(props = {})
       .modal__overlay(data-close-modal)
       .modal__content
         if props.close
-          button.modal__close.btn.btn-transparent(data-close-modal, aria-label="Закрыть", type="button")
+          button.modal__close.btn.btn-transparent(
+            data-close-modal
+            aria-label="Закрыть"
+            type="button"
+          )
             +icn('icn-close', 48, 48).modal__close-icn
         .modal__content-in
           if block
