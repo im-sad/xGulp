@@ -5,7 +5,7 @@ mixin header(props = {})
   header.header(class=headerMods)
     .width
       .header__core
-        each items in dataMenu
+        each item in dataMenu
           a(
             href=item.href
             class=item.href === current && 'is-active'
