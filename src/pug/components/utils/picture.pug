@@ -11,7 +11,7 @@ mixin picture(props = {})
         source(
           type=`image/${source.format || format}`
           media=`(max-width:${source.media}px)`
-          srcset=`img/${path}/${source.name}.${source.format || format} img/${path}/${source.name}@2x.${source.format || format} 2x`
+          srcset=`img/${path}/${source.name}.${source.format || format}, img/${path}/${source.name}@2x.${source.format || format} 2x`
         )
       else
         source(
@@ -27,7 +27,7 @@ mixin picture(props = {})
       //- )
       source(
         type='image/webp'
-        srcset=`img/${path}/${name}.webp img/${path}/${name}@2x.webp 2x`
+        srcset=`img/${path}/${name}.webp, img/${path}/${name}@2x.webp 2x`
       )
 
 

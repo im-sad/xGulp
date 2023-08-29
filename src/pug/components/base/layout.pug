@@ -22,8 +22,11 @@ html(lang="ru")
     //- генерируйте favicon тут - https://realfavicongenerator.net/
     //- в подключение фавикон манифеста обязательно добавьте строчки crossorigin="use-credentials"
 
-    //- link(rel="preload", href="fonts/roboto/Roboto-Regular.woff2", as="font", crossorigin="anonymous")
+    //- link(rel="preload" href="fonts/roboto/Roboto-Regular.woff2" as="font" crossorigin="anonymous")
     link(rel="stylesheet" href="css/style.css?##hash##")
+
+    script.
+      const ASSETS_PATH = './'
 
 
   body(class=bodyMods)
