@@ -37,7 +37,7 @@ html(lang="ru")
     +sprite()
     .page(class=pageMods)
       .page__core
-        if (hasHeader)
+        if hasHeader
           +header({
             mod: headerMods
             currentUrl: currentUrl
@@ -45,7 +45,7 @@ html(lang="ru")
 
         block main
 
-      if (hasFooter)
+      if hasFooter
         +footer({
           mod: footerMods
         })
