@@ -2,6 +2,7 @@ mixin img(props = {})
   -
     const path = props.path || ''
     const name = props.name || ''
+    const alt = props.alt || ''
     const format = props.format || 'jpg'
 
   if format === 'svg'
@@ -9,6 +10,7 @@ mixin img(props = {})
       src=`img/${path}/${name}.svg`
       width= props.width
       height= props.height
+      alt= alt
     )&attributes(attributes)
   else
     img(
@@ -16,6 +18,6 @@ mixin img(props = {})
       srcset= name ? `img/${path}/${name}@2x.${format} 2x` : false
       width= props.width
       height= props.height
-      alt= props.alt ? props.alt : ''
-      loading=props.lazy ? 'lazy' : false
+      alt= alt
+      loading= props.lazy ? 'lazy' : false
     )&attributes(attributes)
