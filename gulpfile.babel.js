@@ -182,7 +182,7 @@ const imagesMin = (done) => {
 }
 
 const webp = (done) => {
-  gulp.src(paths.src.imgWebp, { since: lastRun(webp) })
+  gulp.src(paths.src.imgWebp)
   .pipe(imagemin([
     imageminWebp(webpCfg),
   ]))
