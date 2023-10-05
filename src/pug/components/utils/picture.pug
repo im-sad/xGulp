@@ -10,13 +10,13 @@ mixin picture(props = {})
       if source.format !== 'svg'
         source(
           type=`image/${source.format || format}`
-          media=`(max-width:${source.media}px)`
+          media=source.media
           srcset=`img/${path}/${source.name}.${source.format || format}, img/${path}/${source.name}@2x.${source.format || format} 2x`
         )
       else
         source(
           type=`image/svg+xml`
-          media=`(max-width:${source.media}px)`
+          media=source.media
           srcset=`img/${path}/${source.name}.svg`
         )
 
