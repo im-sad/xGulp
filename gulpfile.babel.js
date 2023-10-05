@@ -162,7 +162,7 @@ const scriptsMin = (done) => {
 
 // Graphic
 const images = (done) => {
-  gulp.src(paths.src.img, { since: lastRun(images) })
+  gulp.src(paths.src.img)
   .pipe(changed(paths.build.img))
   .pipe(gulp.dest(paths.build.img))
 
@@ -170,7 +170,7 @@ const images = (done) => {
 }
 
 const imagesMin = (done) => {
-  gulp.src(paths.src.img, { since: lastRun(imagesMin) })
+  gulp.src(paths.src.img)
   .pipe(changed(paths.build.img))
   .pipe(imagemin([
     imagemin.optipng(imageminCfg.png),
@@ -193,7 +193,7 @@ const webp = (done) => {
 }
 
 const avifConvert = (done) => {
-  gulp.src(paths.src.img, { since: lastRun(avifConvert) })
+  gulp.src(paths.src.img)
   .pipe(gulpAvif(avifCfg))
   .pipe(gulp.dest(paths.build.img))
 
@@ -201,7 +201,7 @@ const avifConvert = (done) => {
 }
 
 const svg = (done) => {
-  gulp.src(paths.src.svg, { since: lastRun(svg) })
+  gulp.src(paths.src.svg)
   .pipe(gulp.dest(paths.build.img))
 
   done()
@@ -267,6 +267,10 @@ const buildAssets = series(
   parallel(stylesMin, scriptsMin)
 )
 
+const buildImages = series(
+  parallel(imagesMin, webp, spriteMin)
+)
+
 const build = series(
   clean,
   parallel(pugToHtml, stylesMin, scriptsMin, spriteMin, copyFonts, copyFavicon, webp, svgMin, imagesMin)
@@ -279,5 +283,5 @@ export default series(
 )
 
 export {
-  build, buildAssets, styles, stylesMin, scripts, scriptsMin, sprite, spriteMin, pugToHtml, webp, avifConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon, updHash
+  build, buildAssets, buildImages, styles, stylesMin, scripts, scriptsMin, sprite, spriteMin, pugToHtml, webp, avifConvert, svg, svgMin, images, imagesMin, copyFonts, copyFavicon, updHash
 }
